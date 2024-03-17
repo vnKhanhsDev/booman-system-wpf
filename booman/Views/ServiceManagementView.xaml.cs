@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace booman_system.Views
+namespace booman.Views
 {
     /// <summary>
     /// Interaction logic for ServiceManagementView.xaml

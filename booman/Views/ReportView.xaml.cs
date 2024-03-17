@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using booman.ViewModels;
 
-namespace booman
+namespace booman.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ReportView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ReportView : UserControl
     {
-        public MainWindow()
+        public ReportView()
         {
             InitializeComponent();
-            this.DataContext = new DashboardViewModel();
         }
     }
 }

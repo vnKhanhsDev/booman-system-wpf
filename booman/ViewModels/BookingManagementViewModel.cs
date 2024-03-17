@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace booman.ViewModels
 {
-    internal class AccountManagementViewModel
+    internal class BookingManagementViewModel
     {
     }
 }

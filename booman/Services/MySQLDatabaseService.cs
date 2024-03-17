@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace booman.ViewModels
+namespace booman.Services
 {
-    internal class AccountManagementViewModel
+    internal class MySQLDatabaseService
     {
     }
 }
