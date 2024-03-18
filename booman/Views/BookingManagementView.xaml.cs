@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Data;
+using System.Diagnostics;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using booman.Services;
 
 namespace booman.Views
 {
@@ -23,6 +14,21 @@ namespace booman.Views
         public BookingManagementView()
         {
             InitializeComponent();
+            LoadRoom();
+        }
+
+        private void LoadRoom()
+        {
+            SQLiteDatabaseService dbService = new SQLiteDatabaseService();
+            DataTable bookingDataTable = dbService.GetDataTable("Booking");
+            foreach (DataRow row in bookingDataTable.Rows)
+            {
+                foreach (var item in row.ItemArray)
+                {
+                    Debug.WriteLine(item);
+                }
+            }
+            BookingDataGrid.ItemsSource = bookingDataTable.DefaultView;
         }
     }
 }
