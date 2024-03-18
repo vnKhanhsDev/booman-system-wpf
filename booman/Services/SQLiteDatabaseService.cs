@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
+using System.Windows.Documents;
 
 namespace booman.Services
 {
@@ -7,7 +10,7 @@ namespace booman.Services
     {
         // Data fields
         private SQLiteConnection _connection;
-        private string _databaseName = "..\\booman.db";
+        private string _databaseName = "../booman.db";
 
         // Constructors
         public SQLiteDatabaseService()
@@ -18,8 +21,23 @@ namespace booman.Services
         // Methods
         private void ConnectToDatabase()
         {
-            _connection = new SQLiteConnection($"Data Source={_databaseName}; Version3;");
+            _connection = new SQLiteConnection($"Data Source={_databaseName};Version=3;");
             _connection.Open();
+        }
+
+        public DataTable GetDataTable(string tableName)
+        {
+            DataTable dataTbl = new DataTable();
+
+            using (SQLiteCommand cmd = new SQLiteCommand($"SELECT * FROM {tableName}", _connection))
+            {
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                {
+                    dataTbl.Load(reader);
+                }
+            }
+
+            return dataTbl;
         }
     }
 }
