@@ -50,13 +50,39 @@ namespace booman.Service
         }
         public void InsertRoom(string roomNumber, string roomType, decimal price)
         {
-            string query = "INSERT INTO room (room_number, room_type, price, status) VALUES (@RoomNumber, @RoomType, @Price, @Status)";
-            MySqlCommand command = new MySqlCommand(query, connection);
+            connection.Open();
+            string query = "INSERT INTO room(room_num, room_type, price, status) VALUES (@RoomNumber, @RoomType, @Price, @Status)";
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = query;
             command.Parameters.AddWithValue("@RoomNumber", roomNumber);
             command.Parameters.AddWithValue("@RoomType", roomType);
             command.Parameters.AddWithValue("@Price", price);
             command.Parameters.AddWithValue("@Status", "empty");
             command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public void DeleteRoom(string roomNumber)
+        {
+            connection.Open();
+            string query = "DELETE FROM room WHERE room_num = @RoomNumber";
+            MySqlCommand command = connection.CreateCommand();  
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@RoomNumber", roomNumber);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public void UpdateRoom(string roomNumber, string roomType, decimal price, string status)
+        {
+            connection.Open();
+            string query = "UPDATE room SET room_type = @RoomType, price = @Price, status = @Status WHERE room_num = @RoomNumber";
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@RoomType", roomType);
+            command.Parameters.AddWithValue("@Price", price);
+            command.Parameters.AddWithValue("@Status", status);
+            command.Parameters.AddWithValue("@RoomNumber", roomNumber);
+            command.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }

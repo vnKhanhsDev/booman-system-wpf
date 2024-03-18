@@ -54,7 +54,7 @@
                 <Label x:Name="labelUpdateRoom" Content="Thông tin phòng" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center"/>
                 <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,30,0,0">
                     <Label Content="Số phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
-                    <TextBox x:Name="textRoomNumber" Width="250" Text="{Binding RoomNumber}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="31,0,0,0" Padding="4" />
+                    <Label x:Name="textRoomNumber" Content="{Binding RoomNumber}" HorizontalContentAlignment="Center" FontSize="16" Margin="28,0,0,0"/>
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,10,0,0">
                     <Label Content="Loại phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
@@ -70,6 +70,7 @@
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center">
                     <Button x:Name="buttonUpdate" Content="Chỉnh sửa" HorizontalAlignment="Center" Margin="0,30,0,0" FontSize="16" Padding="8,4,8,4" Click="Update"/>
+                    <Button x:Name="buttonDelete" Visibility="Visible" Content="Xoá" HorizontalAlignment="Center" Margin="8,30,0,0" FontSize="16" Padding="8,4,8,4" Click="Delete" Background="#FFF9F9F9"/>
                     <Button x:Name="buttonCancel" Visibility="Collapsed" Content="Huỷ" HorizontalAlignment="Center" Margin="8,30,0,0" FontSize="16" Padding="8,4,8,4" Click="Cancel" Background="#FFF9F9F9"/>
                 </WrapPanel>
             </StackPanel>

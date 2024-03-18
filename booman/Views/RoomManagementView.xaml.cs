@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Data.Entity.Core.Metadata.Edm;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 
 
 namespace booman.Views
@@ -60,8 +61,13 @@ namespace booman.Views
         private void AddRoom(object sender, RoutedEventArgs e)
         {
             MySQLDatabaseService connectionDB = new MySQLDatabaseService();
-            connectionDB.InsertRoom(createRoomNumber.Text.ToString(), createRoomType.Text.ToString(), Decimal.Parse(createPrice.Text));           
-            AddRoomGrid.Visibility = Visibility.Collapsed;
+            connectionDB.InsertRoom(createRoomNumber.Text.ToString(), createRoomType.Text.ToString(), Decimal.Parse(createPrice.Text));
+            MessageBoxResult result = MessageBox.Show("Thêm phòng thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (result == MessageBoxResult.OK)
+            {
+                LoadRoom();
+                AddRoomGrid.Visibility = Visibility.Collapsed;
+            }
         }
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -89,7 +95,7 @@ namespace booman.Views
             {
                 labelUpdateRoom.Content = "Chỉnh sửa thông tin phòng";
                 buttonCancel.Visibility = Visibility.Visible;
-                textRoomNumber.IsReadOnly = false;
+                buttonDelete.Visibility = Visibility.Collapsed;
                 textRoomType.IsReadOnly = false;
                 textPrice.IsReadOnly = false;
                 textStatus.IsReadOnly = false;
@@ -97,8 +103,37 @@ namespace booman.Views
             }
             else
             {
+                MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn sửa thông tin phòng không?", "Xác nhận", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK)
+                {
 
+                    MySQLDatabaseService connectionDB = new MySQLDatabaseService();
+                    connectionDB.UpdateRoom(textRoomNumber.Content.ToString(), textRoomType.Text.ToString(), Decimal.Parse(textPrice.Text), textStatus.Text.ToString());
+                    MessageBoxResult result_2 = MessageBox.Show("Cập nhật thông tin phòng thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (result_2 == MessageBoxResult.OK)
+                    {
+                        LoadRoom();
+                        UpdateRoomGrid.Visibility = Visibility.Collapsed;
+                    }
+                }
             }
+        }
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xoá phòng không?", "Xác nhận", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+               
+                MySQLDatabaseService connectionDB = new MySQLDatabaseService();
+                connectionDB.DeleteRoom(textRoomNumber.Content.ToString());
+                MessageBoxResult result_2 = MessageBox.Show("Xoá phòng thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (result_2 == MessageBoxResult.OK)
+                {
+                    LoadRoom();
+                    UpdateRoomGrid.Visibility = Visibility.Collapsed;
+                }
+            }
+
         }
         private void Cancel(object sender, RoutedEventArgs e)
         {
@@ -108,7 +143,6 @@ namespace booman.Views
                 labelUpdateRoom.Content = "Thông tin phòng";
                 UpdateRoomGrid.Visibility = Visibility.Collapsed;
                 buttonCancel.Visibility = Visibility.Collapsed;
-                textRoomNumber.IsReadOnly = true;
                 textRoomType.IsReadOnly = true;
                 textPrice.IsReadOnly = true;
                 textStatus.IsReadOnly = true;
