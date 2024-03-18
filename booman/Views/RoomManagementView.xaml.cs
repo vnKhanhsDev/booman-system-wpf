@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
+using System.Data.Entity.Core.Metadata.Edm;
+using MySql.Data.MySqlClient;
 
 
 namespace booman.Views
@@ -30,7 +32,7 @@ namespace booman.Views
         {
             InitializeComponent();
             LoadRoom();
-          
+            Room room = new Room();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -41,13 +43,7 @@ namespace booman.Views
         {
             MySQLDatabaseService connection = new MySQLDatabaseService("localhost", "booman_db", "root", "khanh1907");
             DataTable listRoom = connection.GetTableData("room");
-            DataRow row = listRoom.Rows[0];
             RoomListView.ItemsSource = listRoom.DefaultView;
-            Room room = new Room();
-            room.RoomNumber = row[0].ToString();
-            room.RoomType = row[1].ToString();
-            room.Price = row[2].ToString();
-            room.Status = row[3].ToString();
         }
         private void ShowAddRoom(object sender, RoutedEventArgs e)
         {
@@ -63,6 +59,14 @@ namespace booman.Views
 
         private void AddRoom(object sender, RoutedEventArgs e)
         {
+            MySQLDatabaseService connectionDB = new MySQLDatabaseService("localhost", "booman_db", "root", "khanh1907");
+            connectionDB.connection.Open();
+            string query = "INSERT INTO room (room_number, room_type, price, status) VALUES (@RoomNumber, @RoomType, @Price, @Status)";
+            MySqlCommand command = new MySqlCommand(query, connectionDB.connection);
+            command.Parameters.AddWithValue("@RoomNumber", createRoomNumber.Text);
+            command.Parameters.AddWithValue("@RoomType", createRoomType.Text);
+            command.Parameters.AddWithValue("@Price", Decimal.Parse(createPrice.Text));
+            command.Parameters.AddWithValue("@Status", "Trống");
             AddRoomGrid.Visibility = Visibility.Collapsed;
         }
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -81,8 +85,41 @@ namespace booman.Views
                     room.Status = dataRowView[3].ToString();
                 }
             }
+            DataContext = room;
 
         }
 
+        private void Update(object sender, RoutedEventArgs e)
+        {
+            if(buttonUpdate.Content.ToString() == "Chỉnh sửa")
+            {
+                labelUpdateRoom.Content = "Chỉnh sửa thông tin phòng";
+                buttonCancel.Visibility = Visibility.Visible;
+                textRoomNumber.IsReadOnly = false;
+                textRoomType.IsReadOnly = false;
+                textPrice.IsReadOnly = false;
+                textStatus.IsReadOnly = false;
+                buttonUpdate.Content = "Xác nhận";
+            }
+            else
+            {
+
+            }
+        }
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn huỷ không?", "Xác nhận", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                labelUpdateRoom.Content = "Thông tin phòng";
+                UpdateRoomGrid.Visibility = Visibility.Collapsed;
+                buttonCancel.Visibility = Visibility.Collapsed;
+                textRoomNumber.IsReadOnly = true;
+                textRoomType.IsReadOnly = true;
+                textPrice.IsReadOnly = true;
+                textStatus.IsReadOnly = true;
+                buttonUpdate.Content = "Chỉnh sửa";
+            }
+        }
     }
 }

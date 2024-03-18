@@ -35,41 +35,43 @@
                 <Label Content="Thêm phòng" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center"/>
                 <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,30,0,0">
                     <Label Content="Số phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
-                    <TextBox Width="250" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="31,0,0,0" Padding="4" />
+                    <TextBox x:Name="createRoomNumber" Width="250" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="31,0,0,0" Padding="4" />
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,10,0,0">
                     <Label Content="Loại phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
-                    <TextBox Width="250" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="20,0,0,0" Padding="4" />
+                    <TextBox x:Name="createRoomType" Width="250" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="20,0,0,0" Padding="4" />
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,10,0,0">
                     <Label Content="Giá phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
-                    <TextBox Width="250" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="25,0,0,0" Padding="4" />
+                    <TextBox x:Name="createPrice" Width="250" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="25,0,0,0" Padding="4" />
                 </WrapPanel>
-                <Button Content="Thêm phòng" HorizontalAlignment="Center" Margin="0,30,0,0" FontSize="16" Padding="8,4,8,4" Click="AddRoom"/>
+                <Button x:Name="buttonAddroom" Content="Thêm phòng" HorizontalAlignment="Center" Margin="0,30,0,0" FontSize="16" Padding="8,4,8,4" Click="AddRoom"/>
             </StackPanel>
         </Grid>
         <Grid x:Name="UpdateRoomGrid" Visibility="Collapsed" Background="white">
             <StackPanel  >
                 <Button Content="Trở về" HorizontalAlignment="Left" Margin="20,10,0,0" FontSize="16" Padding="8,4,8,4" Click="BackPage"/>
-                <Label Content="Thông tin phòng" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <Label x:Name="labelUpdateRoom" Content="Thông tin phòng" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center"/>
                 <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,30,0,0">
                     <Label Content="Số phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
-                    <TextBox Width="250" Text="{Binding RoomNumber}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="31,0,0,0" Padding="4" />
+                    <TextBox x:Name="textRoomNumber" Width="250" Text="{Binding RoomNumber}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="31,0,0,0" Padding="4" />
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,10,0,0">
                     <Label Content="Loại phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
-                    <TextBox Width="250" Text="{Binding RoomType}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="20,0,0,0" Padding="4" />
+                    <TextBox x:Name="textRoomType" Width="250" Text="{Binding RoomType}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="20,0,0,0" Padding="4" />
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,10,0,0">
                     <Label Content="Giá phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
-                    <TextBox Width="250" Text="{Binding Price}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="25,0,0,0" Padding="4" />
+                    <TextBox x:Name="textPrice" Width="250" Text="{Binding Price}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="25,0,0,0" Padding="4" />
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,10,0,0">
                     <Label Content="Trạng thái:" HorizontalContentAlignment="Center" FontSize="16"/>
-                    <TextBox Width="250"  Text="{Binding Status}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="31,0,0,0" Padding="4" />
+                    <TextBox x:Name="textStatus" Width="250"  Text="{Binding Status}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="29,0,0,0" Padding="4" />
                 </WrapPanel>
-
-                <Button Content="Thêm phòng" HorizontalAlignment="Center" Margin="0,30,0,0" FontSize="16" Padding="8,4,8,4" Click="AddRoom"/>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button x:Name="buttonUpdate" Content="Chỉnh sửa" HorizontalAlignment="Center" Margin="0,30,0,0" FontSize="16" Padding="8,4,8,4" Click="Update"/>
+                    <Button x:Name="buttonCancel" Visibility="Collapsed" Content="Huỷ" HorizontalAlignment="Center" Margin="8,30,0,0" FontSize="16" Padding="8,4,8,4" Click="Cancel" Background="#FFF9F9F9"/>
+                </WrapPanel>
             </StackPanel>
         </Grid>
     </Grid>
