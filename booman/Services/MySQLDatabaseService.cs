@@ -1,24 +1,27 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 
 namespace booman.Service
 {
     public class MySQLDatabaseService
     {
-        public MySqlConnection connection;
-        public string server;
-        public string database;
-        public string uid;
-        public string password;
+        // Data fields
+        private MySqlConnection connection;
+        private string server = "localhost";
+        private string database = "booman";
+        private string uid = "root";
+        private string password = "abcdef";
 
-        public MySQLDatabaseService(string server, string database, string uid, string password)
+        // Constructor
+        public MySQLDatabaseService()
         {
-            this.server = server;
-            this.database = database;
-            this.uid = uid;
-            this.password = password;
+            ConnectToDatabase();
+        }
+
+        // Methods
+        private void ConnectToDatabase()
+        {
             string connectionString = $"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};";
             connection = new MySqlConnection(connectionString);
         }
@@ -40,6 +43,7 @@ namespace booman.Service
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
+
             connection.Close();
 
             return dataTable;

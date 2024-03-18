@@ -39,8 +39,8 @@ namespace booman.Views
         }
         public void LoadRoom()
         {
-            MySQLDatabaseService connection = new MySQLDatabaseService("localhost", "booman_db", "root", "khanh1907");
-            DataTable listRoom = connection.GetTableData("room");
+            MySQLDatabaseService dbService = new MySQLDatabaseService();
+            DataTable listRoom = dbService.GetTableData("room");
             DataRow row = listRoom.Rows[0];
             RoomListView.ItemsSource = listRoom.DefaultView;
             Room room = new Room();

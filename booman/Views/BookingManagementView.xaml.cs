@@ -2,6 +2,7 @@
 using System.Data;
 using System.Diagnostics;
 using System.Windows.Controls;
+using booman.Service;
 using booman.Services;
 
 namespace booman.Views
@@ -19,16 +20,9 @@ namespace booman.Views
 
         private void LoadRoom()
         {
-            SQLiteDatabaseService dbService = new SQLiteDatabaseService();
-            DataTable bookingDataTable = dbService.GetDataTable("Booking");
-            foreach (DataRow row in bookingDataTable.Rows)
-            {
-                foreach (var item in row.ItemArray)
-                {
-                    Debug.WriteLine(item);
-                }
-            }
-            BookingDataGrid.ItemsSource = bookingDataTable.DefaultView;
+            MySQLDatabaseService dbService = new MySQLDatabaseService();
+            DataTable bookings = dbService.GetTableData("booking");
+            BookingDataGrid.ItemsSource = bookings.DefaultView;
         }
     }
 }
