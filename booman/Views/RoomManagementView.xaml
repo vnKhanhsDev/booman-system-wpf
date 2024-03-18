@@ -5,8 +5,72 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:booman.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Orange">
-            
+             d:DesignHeight="650" d:DesignWidth="1000">
+    <Grid Background="White">
+        <Grid x:Name="RoomManagement" Background="White">
+
+            <StackPanel>
+                <Label Content="Quản lý phòng" HorizontalContentAlignment="Center" FontSize="28" FontWeight="Bold"/>
+                <Button Content="Thêm phòng" HorizontalAlignment="Left" Margin="50,30,0,0" FontSize="18" Padding="8,4,8,4" VerticalContentAlignment="Center" BorderBrush="Black" Background="#FFDDDDDD" BorderThickness="1,1,1,1" Click="ShowAddRoom" />
+                <ListView Name="RoomListView" Margin="50,10,46,10" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="16">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Phòng" Width="200" DisplayMemberBinding="{Binding room_num}" />
+                            <GridViewColumn Header="Loại phòng" Width="250" DisplayMemberBinding="{Binding room_type}" />
+                            <GridViewColumn Header="Giá phòng" Width="250" DisplayMemberBinding="{Binding price}" />
+                            <GridViewColumn Header="Tình trạng" Width="200" DisplayMemberBinding="{Binding status}" />
+                        </GridView>
+                    </ListView.View>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="AddRoomGrid" Visibility="Collapsed" Background="white">
+            <StackPanel  >
+                <Button Content="Trở về" HorizontalAlignment="Left" Margin="20,10,0,0" FontSize="16" Padding="8,4,8,4" Click="BackPage"/>
+                <Label Content="Thêm phòng" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,30,0,0">
+                    <Label Content="Số phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
+                    <TextBox Width="250" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="31,0,0,0" Padding="4" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,10,0,0">
+                    <Label Content="Loại phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
+                    <TextBox Width="250" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="20,0,0,0" Padding="4" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,10,0,0">
+                    <Label Content="Giá phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
+                    <TextBox Width="250" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="25,0,0,0" Padding="4" />
+                </WrapPanel>
+                <Button Content="Thêm phòng" HorizontalAlignment="Center" Margin="0,30,0,0" FontSize="16" Padding="8,4,8,4" Click="AddRoom"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="UpdateRoomGrid" Visibility="Collapsed" Background="white">
+            <StackPanel  >
+                <Button Content="Trở về" HorizontalAlignment="Left" Margin="20,10,0,0" FontSize="16" Padding="8,4,8,4" Click="BackPage"/>
+                <Label Content="Thông tin phòng" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,30,0,0">
+                    <Label Content="Số phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
+                    <TextBox Width="250" Text="{Binding RoomNumber}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="31,0,0,0" Padding="4" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,10,0,0">
+                    <Label Content="Loại phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
+                    <TextBox Width="250" Text="{Binding RoomType}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="20,0,0,0" Padding="4" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,10,0,0">
+                    <Label Content="Giá phòng:" HorizontalContentAlignment="Center" FontSize="16"/>
+                    <TextBox Width="250" Text="{Binding Price}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="25,0,0,0" Padding="4" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center" Width="400" Margin="0,10,0,0">
+                    <Label Content="Trạng thái:" HorizontalContentAlignment="Center" FontSize="16"/>
+                    <TextBox Width="250"  Text="{Binding Status}" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Margin="31,0,0,0" Padding="4" />
+                </WrapPanel>
+
+                <Button Content="Thêm phòng" HorizontalAlignment="Center" Margin="0,30,0,0" FontSize="16" Padding="8,4,8,4" Click="AddRoom"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>
