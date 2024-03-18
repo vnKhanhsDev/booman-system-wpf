@@ -41,7 +41,7 @@ namespace booman.Views
         }
         public void LoadRoom()
         {
-            MySQLDatabaseService connection = new MySQLDatabaseService("localhost", "booman_db", "root", "khanh1907");
+            MySQLDatabaseService connection = new MySQLDatabaseService();
             DataTable listRoom = connection.GetTableData("room");
             RoomListView.ItemsSource = listRoom.DefaultView;
         }
@@ -59,14 +59,8 @@ namespace booman.Views
 
         private void AddRoom(object sender, RoutedEventArgs e)
         {
-            MySQLDatabaseService connectionDB = new MySQLDatabaseService("localhost", "booman_db", "root", "khanh1907");
-            connectionDB.connection.Open();
-            string query = "INSERT INTO room (room_number, room_type, price, status) VALUES (@RoomNumber, @RoomType, @Price, @Status)";
-            MySqlCommand command = new MySqlCommand(query, connectionDB.connection);
-            command.Parameters.AddWithValue("@RoomNumber", createRoomNumber.Text);
-            command.Parameters.AddWithValue("@RoomType", createRoomType.Text);
-            command.Parameters.AddWithValue("@Price", Decimal.Parse(createPrice.Text));
-            command.Parameters.AddWithValue("@Status", "Trống");
+            MySQLDatabaseService connectionDB = new MySQLDatabaseService();
+            connectionDB.InsertRoom(createRoomNumber.Text.ToString(), createRoomType.Text.ToString(), Decimal.Parse(createPrice.Text));           
             AddRoomGrid.Visibility = Visibility.Collapsed;
         }
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)

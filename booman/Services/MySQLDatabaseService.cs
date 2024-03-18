@@ -11,7 +11,7 @@ namespace booman.Service
         private string server = "localhost";
         private string database = "booman";
         private string uid = "root";
-        private string password = "abcdef";
+        private string password = "khanh1907";
 
         // Constructor
         public MySQLDatabaseService()
@@ -47,6 +47,16 @@ namespace booman.Service
             connection.Close();
 
             return dataTable;
+        }
+        public void InsertRoom(string roomNumber, string roomType, decimal price)
+        {
+            string query = "INSERT INTO room (room_number, room_type, price, status) VALUES (@RoomNumber, @RoomType, @Price, @Status)";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@RoomNumber", roomNumber);
+            command.Parameters.AddWithValue("@RoomType", roomType);
+            command.Parameters.AddWithValue("@Price", price);
+            command.Parameters.AddWithValue("@Status", "empty");
+            command.ExecuteNonQuery();
         }
     }
 }
