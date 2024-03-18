@@ -1,5 +1,7 @@
-﻿using System;
+﻿using booman.Service;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace booman.Views
 {
@@ -22,7 +25,7 @@ namespace booman.Views
     {
         public AccountManagementView()
         {
-            InitializeComponent();
-        }
+            InitializeComponent();           
+        }      
     }
 }
