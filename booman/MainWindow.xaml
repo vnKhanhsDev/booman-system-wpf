@@ -10,6 +10,9 @@
 
     <!--Define DataTemplate-->
     <Window.Resources>
+        <DataTemplate x:Name="LoginViewTemplate" DataType="{x:Type viewmodel:LoginViewModel}">
+            <view:LoginView DataContext="{Binding}"/>
+        </DataTemplate>
         <DataTemplate x:Name="DashboardViewTemplate" DataType="{x:Type viewmodel:DashboardViewModel}">
             <view:DashboardView DataContext="{Binding}"/>
         </DataTemplate>

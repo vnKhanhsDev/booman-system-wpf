@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using booman.ViewModels;
 
 namespace booman.Views
 {
@@ -23,6 +24,7 @@ namespace booman.Views
         public LoginView()
         {
             InitializeComponent();
+            this.DataContext = new LoginViewModel();
         }
     }
 }

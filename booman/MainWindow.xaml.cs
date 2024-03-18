@@ -24,7 +24,7 @@ namespace booman
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new DashboardViewModel();
+            this.DataContext = new LoginViewModel();
         }
     }
 }
