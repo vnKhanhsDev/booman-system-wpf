@@ -6,7 +6,49 @@
              xmlns:local="clr-namespace:booman.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="PaleGoldenrod">
-            
+    <Grid Background="White">
+        <Grid>
+            <StackPanel>
+                <Label Content="Sơ đồ phòng" HorizontalContentAlignment="Center" FontSize="28" FontWeight="Bold"/>
+                <WrapPanel HorizontalAlignment="Right" Margin="-3,12,0,0">
+                    <TextBox TextWrapping="Wrap" Width="216" FontSize="14" />
+                    <Button Content="Tìm kiếm" Margin="8,0,50,0" FontSize="14" Padding="8,4,8,4"/>
+                </WrapPanel>
+                <WrapPanel Margin="0,-30,0,0">
+                    <Label Content="Trạng thái:" HorizontalAlignment="Left" Margin="50,0,0,0" FontWeight="Bold"/>
+                    <RadioButton x:Name="emptyRadioButton" Content="Trống" GroupName="statusGroup" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" />
+                    <RadioButton x:Name="usedRadioButton" Content="Đang sử dụng" GroupName="statusGroup" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,0" />
+                    <RadioButton x:Name="allStatusRadioButton" Content="Tất cả" GroupName="statusGroup" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" />
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Content="Loại phòng:" HorizontalAlignment="Left" Margin="50,0,0,0" FontWeight="Bold"/>
+                    <RadioButton x:Name="standardRadioButton" Content="Tiêu chuẩn" GroupName="typeGroup" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" />
+                    <RadioButton x:Name="vipRadioButton" Content="Cao cấp" GroupName="typeGroup" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,0" />
+                    <RadioButton x:Name="allTypeRadioButton" Content="Tất cả" GroupName="typeGroup" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" />
+                </WrapPanel>
+                <Button Content="Lọc" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="54,8,0,0" FontSize="14" Padding="12,4,12,4"/>
+                <ItemsControl x:Name="ItemRoom" Margin="50,24,50,0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button 
+                            Width="100" Height="100"
+                            Margin="5"
+                            Command="{Binding DataContext.RoomSelectedCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                            CommandParameter="{Binding}" >
+                                <StackPanel>
+                                    <TextBlock Text="{Binding room_num}" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding status}" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

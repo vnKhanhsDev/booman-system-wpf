@@ -1,5 +1,7 @@
-﻿using System;
+﻿using booman.Service;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,13 @@ namespace booman.Views
         public RoomMapView()
         {
             InitializeComponent();
+            LoadRoom();
+        }
+        public void LoadRoom()
+        {
+            MySQLDatabaseService connection = new MySQLDatabaseService();
+            DataTable listRoom = connection.GetTableData("room");
+            ItemRoom.ItemsSource = listRoom.DefaultView;
         }
     }
 }
