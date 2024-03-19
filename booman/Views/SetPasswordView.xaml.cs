@@ -24,5 +24,25 @@ namespace booman.Views
         {
             InitializeComponent();
         }
+        private void CreatePassword_Click(object sender, RoutedEventArgs e)
+        {
+            string newPassword = txtNewPassword.Text;
+            string confirmPassword = txtConfirmPassword.Text;
+
+            if (newPassword == confirmPassword)
+            {
+
+                MessageBox.Show("Mật khẩu đã được tạo thành công!", "Thành Công", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                Environment.Exit(0);
+            }
+            else
+            {
+                MessageBox.Show("Xác nhận mật khẩu không khớp. Vui lòng nhập lại.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                txtNewPassword.Clear();
+                txtConfirmPassword.Clear();
+                txtNewPassword.Focus();
+            }
+        }
     }
 }
