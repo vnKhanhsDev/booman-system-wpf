@@ -6,7 +6,9 @@
         xmlns:viewmodel="clr-namespace:booman.ViewModels"
         xmlns:view="clr-namespace:booman.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1200">
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="Booman - Quản lý đặt phòng" Height="650" Width="1200">
 
     <!--Define DataTemplate-->
     <Window.Resources>
@@ -16,11 +18,12 @@
         <DataTemplate x:Name="DashboardViewTemplate" DataType="{x:Type viewmodel:DashboardViewModel}">
             <view:DashboardView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="SetPasswordViewTemplate" DataType="{x:Type viewmodel:SetPasswordViewModel}">
+            <view:SetPasswordView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
-
         <ContentControl Content="{Binding}"/>
-
     </Grid>
 </Window>

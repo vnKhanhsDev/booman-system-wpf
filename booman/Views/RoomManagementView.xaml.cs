@@ -1,4 +1,4 @@
-﻿using booman.Service;
+﻿using booman.Services;
 using System;
 using System;
 using System.Collections.Generic;
@@ -20,6 +20,7 @@ namespace booman.Views
     {
         public string RoomNumber { get; set; }
         public string RoomType { get; set; }
+        public string BedType { get; set; }
         public string Price { get; set; }
         public string Status { get; set; }
     }
@@ -61,7 +62,7 @@ namespace booman.Views
         private void AddRoom(object sender, RoutedEventArgs e)
         {
             MySQLDatabaseService connectionDB = new MySQLDatabaseService();
-            connectionDB.InsertRoom(createRoomNumber.Text.ToString(), createRoomType.Text.ToString(), Decimal.Parse(createPrice.Text));
+            connectionDB.InsertRoom(createRoomNumber.Text.ToString(), createRoomType.Text.ToString(), createBedType.Text.ToString(), Decimal.Parse(createPrice.Text));
             MessageBoxResult result = MessageBox.Show("Thêm phòng thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             if (result == MessageBoxResult.OK)
             {
@@ -81,8 +82,9 @@ namespace booman.Views
                 {
                     room.RoomNumber = dataRowView[0].ToString();
                     room.RoomType = dataRowView[1].ToString();
-                    room.Price = dataRowView[2].ToString();
-                    room.Status = dataRowView[3].ToString();
+                    room.BedType = dataRowView[2].ToString();
+                    room.Price = dataRowView[3].ToString();
+                    room.Status = dataRowView[4].ToString();
                 }
             }
             DataContext = room;
@@ -108,7 +110,7 @@ namespace booman.Views
                 {
 
                     MySQLDatabaseService connectionDB = new MySQLDatabaseService();
-                    connectionDB.UpdateRoom(textRoomNumber.Content.ToString(), textRoomType.Text.ToString(), Decimal.Parse(textPrice.Text), textStatus.Text.ToString());
+                    connectionDB.UpdateRoom(textRoomNumber.Content.ToString(), textRoomType.Text.ToString(), textBedType.Text.ToString(), Decimal.Parse(textPrice.Text), textStatus.Text.ToString());
                     MessageBoxResult result_2 = MessageBox.Show("Cập nhật thông tin phòng thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                     if (result_2 == MessageBoxResult.OK)
                     {
