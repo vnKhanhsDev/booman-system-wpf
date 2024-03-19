@@ -34,12 +34,12 @@
                         <TextBox Width="138" x:Name="textPrice" Text="{Binding SelectedItem.price, ElementName=SeviceListView}" Margin="22,0,0,0"/>
                     </WrapPanel>
                 <WrapPanel Margin="0,16,0,0">
-                    <Label Content="Số lượng: "/>
-                    <TextBox Width="138" x:Name="textUnit" Text="{Binding SelectedItem.unit, ElementName=SeviceListView}" Margin="22,0,0,0"/>
+                    <Label Content="Đơn Vị: "/>
+                    <TextBox Width="138" x:Name="textUnit" Text="{Binding SelectedItem.unit, ElementName=SeviceListView}" Margin="29,0,0,0"/>
                 </WrapPanel>
                 <WrapPanel Margin="0,20,0,0">
-                    <Label Content="Số lượng: "/>
-                    <TextBox Width="138" x:Name="textNote" Text="{Binding SelectedItem.note, ElementName=SeviceListView}" Margin="22,0,0,0"/>
+                    <Label Content="Ghi Chú: "/>
+                    <TextBox Width="138" x:Name="textNote" Text="{Binding SelectedItem.note, ElementName=SeviceListView}" Margin="25,0,0,0"/>
                 </WrapPanel>
             </StackPanel>
            
@@ -57,7 +57,7 @@
                 </StackPanel>
                 <StackPanel Grid.Row="1">
                 </StackPanel>
-                <WrapPanel Grid.RowSpan="2" Grid.ColumnSpan="3" VerticalAlignment="top" Margin="0,230,0,0" Width="890">
+                <WrapPanel Grid.RowSpan="2" Grid.ColumnSpan="3" VerticalAlignment="top" Margin="0,200,0,0" Width="890">
                     <ListView Name="SeviceListView" Margin="0,0,0,0">
                         <ListView.View>
                             <GridView>
