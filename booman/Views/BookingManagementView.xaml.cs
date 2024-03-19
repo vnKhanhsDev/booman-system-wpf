@@ -2,7 +2,6 @@
 using System.Data;
 using System.Diagnostics;
 using System.Windows.Controls;
-using booman.Service;
 using booman.Services;
 
 namespace booman.Views
