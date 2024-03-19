@@ -12,7 +12,11 @@ namespace booman.Services
         private string server = "localhost";
         private string database = "booman";
         private string uid = "root";
+<<<<<<< HEAD
         private string password = "304082";
+=======
+        private string password = "khanh1907";
+>>>>>>> 9fe77cfac9528dbec4414408b70d4817d57e81bb
 
         // Constructor
         public MySQLDatabaseService()
@@ -49,15 +53,20 @@ namespace booman.Services
 
             return dataTable;
         }
+<<<<<<< HEAD
 
         public void InsertRoom(string roomNumber, string roomType, decimal price)
+=======
+        public void InsertRoom(string roomNumber, string quality,string bedType, decimal price)
+>>>>>>> 9fe77cfac9528dbec4414408b70d4817d57e81bb
         {
             connection.Open();
-            string query = "INSERT INTO room(room_num, room_type, price, status) VALUES (@RoomNumber, @RoomType, @Price, @Status)";
+            string query = "INSERT INTO `room` (`room_num`, `quality_class`, `bed_type_class`, `price`, `status`) VALUES (@RoomNumber, @Quality, @BedType, @Price, @Status)";
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = query;
             command.Parameters.AddWithValue("@RoomNumber", roomNumber);
-            command.Parameters.AddWithValue("@RoomType", roomType);
+            command.Parameters.AddWithValue("@Quality", quality);
+            command.Parameters.AddWithValue("@BedType", bedType);
             command.Parameters.AddWithValue("@Price", price);
             command.Parameters.AddWithValue("@Status", "empty");
             command.ExecuteNonQuery();
@@ -73,18 +82,44 @@ namespace booman.Services
             command.ExecuteNonQuery();
             connection.Close();
         }
-        public void UpdateRoom(string roomNumber, string roomType, decimal price, string status)
+        public void UpdateRoom(string roomNumber, string quality,string bedType, decimal price, string status)
         {
             connection.Open();
-            string query = "UPDATE room SET room_type = @RoomType, price = @Price, status = @Status WHERE room_num = @RoomNumber";
+            string query = "UPDATE room SET quality_class = @Quality, bed_type_class = @BedType, price = @Price, status = @Status WHERE room_num = @RoomNumber";
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = query;
-            command.Parameters.AddWithValue("@RoomType", roomType);
+            command.Parameters.AddWithValue("@Quality", quality);
             command.Parameters.AddWithValue("@Price", price);
+            command.Parameters.AddWithValue("@BedType", bedType);
             command.Parameters.AddWithValue("@Status", status);
             command.Parameters.AddWithValue("@RoomNumber", roomNumber);
             command.ExecuteNonQuery();
             connection.Close();
+        }
+        public DataTable FilterRoom(string quality, string status)
+        {
+            connection.Open();
+            DataTable dataTable = new DataTable();
+            string query = "SELECT * FROM room WHERE status = @status AND quality_class = @quality";
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = query;
+            command.Parameters.AddWithValue("status", status);
+            command.Parameters.AddWithValue("quality", quality);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            adapter.Fill(dataTable);
+            return dataTable;
+        }
+        public DataTable SearchRoom(string room_num)
+        {
+            connection.Open();
+            DataTable dataTable = new DataTable();
+            string query = "SELECT * FROM room WHERE room_num = @RoomNum";
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = query;
+            command.Parameters.AddWithValue("RoomNum", room_num);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            adapter.Fill(dataTable);
+            return dataTable;
         }
     }
 }
