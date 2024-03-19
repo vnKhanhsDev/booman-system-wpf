@@ -11,7 +11,7 @@ namespace booman.Service
         private string server = "localhost";
         private string database = "booman";
         private string uid = "root";
-        private string password = "khanh1907";
+        private string password = "diep0411";
 
         // Constructor
         public MySQLDatabaseService()
@@ -81,6 +81,42 @@ namespace booman.Service
             command.Parameters.AddWithValue("@Price", price);
             command.Parameters.AddWithValue("@Status", status);
             command.Parameters.AddWithValue("@RoomNumber", roomNumber);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public void InsertService(string idService, string nameService, decimal price)
+        {
+            connection.Open();
+            string query = "INSERT INTO service(id,service_name,description,price) VALUES (@ServiceId, @ServiceName,@Description,@Price)";
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@ServiceId", idService);
+            command.Parameters.AddWithValue("@ServiceName", nameService);
+            command.Parameters.AddWithValue("@Price", price);
+            command.Parameters.AddWithValue("@Description", "empty");
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public void UpdateService(string idService, string nameService, decimal price, string description)
+        {
+            connection.Open();
+            string query = "UPDATE service SET service_name = @ServiceName, price = @Price, description = @Description WHERE id = @ServiceId";
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@ServiceName", nameService);
+            command.Parameters.AddWithValue("@Price", price);
+            command.Parameters.AddWithValue("@Description", description);
+            command.Parameters.AddWithValue("@ServiceId", idService);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public void DeleteService(string idService)
+        {
+            connection.Open();
+            string query = "DELETE FROM service WHERE id = @ServiceId";
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = query;
+            command.Parameters.AddWithValue("@ServiceId", idService);
             command.ExecuteNonQuery();
             connection.Close();
         }

@@ -1,12 +1,73 @@
-﻿<UserControl x:Class="booman.Views.ServiceManagementView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:booman.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Green">
-            
-    </Grid>
-</UserControl>
+﻿    <UserControl x:Class="booman.Views.ServiceManagementView"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                 xmlns:local="clr-namespace:booman.Views"
+                 mc:Ignorable="d"
+                 d:DesignHeight="650" d:DesignWidth="1000" Background="Wheat">
+        <StackPanel Margin="50,0,50,0">
+            <Label Content="Quản Lý Dịch Vụ" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+            <Grid Height="612">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300*"/>
+                    <ColumnDefinition Width="300*"/>
+                    <ColumnDefinition Width="300*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0">
+                    <WrapPanel Margin="0,50,0,0">
+                        <Label Content="Mã Dịch Vụ: "/>
+                        <TextBox x:Name="textServiceid" Text="{Binding SelectedItem.id, ElementName=SeviceListView}" Width="138"  Margin="2,0,0,0"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="0,16,0,0">
+                        <Label Content="Tên Dịch Vụ: "/>
+                        <TextBox Width="139" x:Name="textServiceName" Text="{Binding SelectedItem.service_name, ElementName=SeviceListView}"/>
+                    </WrapPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1" >
+                    <WrapPanel Margin="0,50,0,0">
+                        <Label Content="trạng thái: "/>
+                        <TextBox Width="138" x:Name="textdesType" Text="{Binding SelectedItem.description, ElementName=SeviceListView}" Margin="2,0,0,0"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="0,16,0,0">
+                        <Label Content="Đơn Giá: "/>
+                        <TextBox Width="138" x:Name="textPrice" Text="{Binding SelectedItem.price, ElementName=SeviceListView}" Margin="22,0,0,0"/>
+                    </WrapPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <WrapPanel Margin="100,16,0,0">
+                    <Button Content="Thêm" FontSize="20" Width="80" Height="30" Click="AddService"></Button>
+                    </WrapPanel>
+                    <WrapPanel Margin="100,16,0,0">
+                        <Button Content="Sửa" FontSize="20" Width="80" Height="30" Click="editService"></Button>
+                    </WrapPanel>
+                    <WrapPanel Margin="100,16,0,0">
+                        <Button Content="Xóa" FontSize="20" Width="80" Height="30" Click="DeleteService"></Button>
+                    </WrapPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                </StackPanel>
+                <WrapPanel Grid.RowSpan="2" Grid.ColumnSpan="3" VerticalAlignment="top" Margin="0,230,0,0" Width="890">
+                    <ListView Name="SeviceListView" Margin="0,0,0,0">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Ma dich vu" Width="200" DisplayMemberBinding="{Binding id}" />
+                                <GridViewColumn Header="Ten dich vu" Width="250" DisplayMemberBinding="{Binding service_name}" />
+                                <GridViewColumn Header="Tinh trang" Width="250" DisplayMemberBinding="{Binding description}" />
+                                <GridViewColumn Header="price" Width="200" DisplayMemberBinding="{Binding price}" />
+                            </GridView>
+                        </ListView.View>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </WrapPanel>
+            </Grid>
+        </StackPanel>
+    </UserControl>

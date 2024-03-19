@@ -40,7 +40,7 @@ namespace booman.Views
         {
 
         }
-        public void LoadRoom()
+        public void LoadRoom() 
         {
             MySQLDatabaseService connection = new MySQLDatabaseService();
             DataTable listRoom = connection.GetTableData("room");
