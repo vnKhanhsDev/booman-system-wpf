@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Data;
+using System.Windows.Documents;
 using MySql.Data.MySqlClient;
 
-namespace booman.Service
+namespace booman.Services
 {
     public class MySQLDatabaseService
     {
@@ -11,7 +12,7 @@ namespace booman.Service
         private string server = "localhost";
         private string database = "booman";
         private string uid = "root";
-        private string password = "123456";
+        private string password = "304082";
 
         // Constructor
         public MySQLDatabaseService()
@@ -48,6 +49,7 @@ namespace booman.Service
 
             return dataTable;
         }
+
         public void InsertRoom(string roomNumber, string roomType, decimal price)
         {
             connection.Open();

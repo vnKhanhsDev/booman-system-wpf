@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using booman.Helpers;
+using booman.Services;
+using System.Data;
+using booman.Models;
 
 namespace booman.ViewModels
 {
@@ -14,45 +14,81 @@ namespace booman.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _username;
+        // Data fields
+        private string username;
+        private string password;
+        private DataTable accountDT;
+
+        public ICommand LoginCommand { get; private set; }
+
+        // Constructors
+        public LoginViewModel()
+        {
+            GetAccountData();
+            LoginCommand = new RelayCommand(LoginCheck);
+        }
+
+        // Properties
         public string Username
         {
-            get { return _username; }
+            get { return username; }
             set
             {
-                _username = value;
+                username = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Username)));
             }
         }
-
-        private string _password;
         public string Password
         {
-            get { return _password; }
+            get { return password; }
             set
             {
-                _password = value;
+                password = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Password)));
             }
         }
 
-        public ICommand LoginCommand { get; private set; }
-
-        public LoginViewModel()
+        // Methods
+        private void GetAccountData()
         {
-            LoginCommand = new RelayCommand(LoginCheck);
+            MySQLDatabaseService dbService = new MySQLDatabaseService();
+            this.accountDT = dbService.GetTableData("account");
         }
 
         private void LoginCheck()
         {
-            if ((Username == "admin@gmail.com" || Username == "0123456789") && Password == "admin")
+            if (this.accountDT != null)
             {
-                var mainWindow = Application.Current.MainWindow;
-                mainWindow.DataContext = new DashboardViewModel();
+                bool isAuthenticated = false;
+
+                foreach (DataRow row in this.accountDT.Rows)
+                {
+                    string _phone = row["phone"].ToString();
+                    string _email = row["email"].ToString();
+                    string _password = row["password"].ToString();
+
+                    if ((Username == _phone) || (Username == _email) && Password == _password)
+                    {
+                        isAuthenticated = true;
+                        break;
+                    }
+                }
+
+                if (isAuthenticated)
+                {
+                    var mainWindow = Application.Current.MainWindow;
+
+                    if (Password == "booman") mainWindow.DataContext = new SetPasswordViewModel();
+                    else mainWindow.DataContext = new DashboardViewModel();
+                }
+                else
+                {
+                    MessageBox.Show("Email/Số điện thoại hoặc mật khẩu không đúng!");
+                }
             }
             else
             {
-                MessageBox.Show("Email (Số điện thoại) hoặc mật khẩu không đúng!");
+                MessageBox.Show("Lấy dữ liệu tài khoản thất bại!");
             }
         }
     }
