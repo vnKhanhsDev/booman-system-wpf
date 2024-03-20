@@ -7,23 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1000">
     <Grid Background="#FFF9F9F9">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Label Content="Quản lí tài khoản nhân viên" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="28"/>
         <Label Content="Số điện thoại:" HorizontalAlignment="Left" Margin="75,103,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Mật khẩu:" HorizontalAlignment="Left" Margin="75,193,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Tên tài khoản:" HorizontalAlignment="Left" Margin="75,147,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <TextBox HorizontalAlignment="Left" Margin="191,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Height="26" FontSize="16"/>
-        <Label Content="Họ và tên:" HorizontalAlignment="Left" Margin="453,100,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Button Content="Thêm" HorizontalAlignment="Left" Height="25" Margin="833,103,0,0" VerticalAlignment="Top" Width="73" FontSize="16"/>
-        <Button Content="Xóa" HorizontalAlignment="Left" Height="25" Margin="833,191,0,0" VerticalAlignment="Top" Width="73" FontSize="16"/>
-        <Button Content="Sửa" HorizontalAlignment="Left" Height="25" Margin="833,146,0,0" VerticalAlignment="Top" Width="73" FontSize="16"/>
-        <TextBox HorizontalAlignment="Left" Margin="534,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Height="26" FontSize="16"/>
-        <TextBox HorizontalAlignment="Left" Margin="191,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Height="26" FontSize="16"/>
-        <TextBox HorizontalAlignment="Left" Margin="191,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Height="26" FontSize="16"/>
-        <DataGrid HorizontalAlignment="Left" Height="321" Margin="82,285,0,0" VerticalAlignment="Top" Width="824"/>
-        <Label Content="Vai trò:" HorizontalAlignment="Left" Margin="453,149,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <TextBox HorizontalAlignment="Left" Margin="534,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Height="26" FontSize="16"/>
-
-
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="75,147,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox x:Name="textBox_phone" HorizontalAlignment="Left" Margin="191,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="26" FontSize="16"/>
+        <Label Content="Họ và tên:" HorizontalAlignment="Left" Margin="555,100,0,0" VerticalAlignment="Top" FontSize="16" Width="110"/>
+        <Button x:Name="AddAccount" Content="Thêm" HorizontalAlignment="Left" Height="25" Margin="341,257,0,0" VerticalAlignment="Top" Width="73" FontSize="16" Click="AddAccount_Click"/>
+        <Button x:Name="DeleteAccount" Content="Xóa" HorizontalAlignment="Left" Height="25" Margin="576,257,0,0" VerticalAlignment="Top" Width="73" FontSize="16" Click="DeleteAccount_Click"/>
+        <Button x:Name="EditAccount" Content="Sửa" HorizontalAlignment="Center" Height="25" Margin="0,257,0,0" VerticalAlignment="Top" Width="72" FontSize="16" Click="EditAccount_Click"/>
+        <TextBox x:Name="textBox_fullName" HorizontalAlignment="Left" Margin="663,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" Height="26" FontSize="16"/>
+        <TextBox x:Name="textBox_pass" HorizontalAlignment="Left" Margin="191,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" Height="26" FontSize="16"/>
+        <TextBox x:Name="textBox_email" HorizontalAlignment="Left" Margin="191,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" Height="26" FontSize="16"/>
+        <DataGrid x:Name="dataGridView" Margin="75,300,32,18" IsReadOnly="True" FontSize="16" Grid.Row="0" SelectionChanged="dataGridView_SelectionChanged">
+            <DataGrid.CellStyle>
+                <Style/>
+            </DataGrid.CellStyle>
+        </DataGrid>
+        <Label Content="Vai trò:" HorizontalAlignment="Left" Margin="555,149,0,0" VerticalAlignment="Top" FontSize="16" Width="80"/>
+        <TextBox x:Name="textBox_role" HorizontalAlignment="Left" Margin="663,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" Height="26" FontSize="16"/>
 
     </Grid>
 </UserControl>

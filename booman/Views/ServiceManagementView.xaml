@@ -25,20 +25,26 @@
                     </WrapPanel>
                     <WrapPanel Margin="0,16,0,0">
                         <Label Content="Tên Dịch Vụ: "/>
-                        <TextBox Width="139" x:Name="textServiceName" Text="{Binding SelectedItem.service_name, ElementName=SeviceListView}"/>
+                        <TextBox Width="139" x:Name="textServiceName" Text="{Binding SelectedItem.name, ElementName=SeviceListView}"/>
                     </WrapPanel>
                 </StackPanel>
                 <StackPanel Grid.Column="1" >
                     <WrapPanel Margin="0,50,0,0">
-                        <Label Content="trạng thái: "/>
-                        <TextBox Width="138" x:Name="textdesType" Text="{Binding SelectedItem.description, ElementName=SeviceListView}" Margin="2,0,0,0"/>
-                    </WrapPanel>
-                    <WrapPanel Margin="0,16,0,0">
                         <Label Content="Đơn Giá: "/>
                         <TextBox Width="138" x:Name="textPrice" Text="{Binding SelectedItem.price, ElementName=SeviceListView}" Margin="22,0,0,0"/>
                     </WrapPanel>
-                </StackPanel>
-                <StackPanel Grid.Column="2">
+                <WrapPanel Margin="0,16,0,0">
+                    <Label Content="Đơn Vị: "/>
+                    <TextBox Width="138" x:Name="textUnit" Text="{Binding SelectedItem.unit, ElementName=SeviceListView}" Margin="29,0,0,0"/>
+                </WrapPanel>
+                <WrapPanel Margin="0,20,0,0">
+                    <Label Content="Ghi Chú: "/>
+                    <TextBox Width="138" x:Name="textNote" Text="{Binding SelectedItem.note, ElementName=SeviceListView}" Margin="25,0,0,0"/>
+                </WrapPanel>
+            </StackPanel>
+           
+
+            <StackPanel Grid.Column="2">
                     <WrapPanel Margin="100,16,0,0">
                     <Button Content="Thêm" FontSize="20" Width="80" Height="30" Click="AddService"></Button>
                     </WrapPanel>
@@ -51,15 +57,16 @@
                 </StackPanel>
                 <StackPanel Grid.Row="1">
                 </StackPanel>
-                <WrapPanel Grid.RowSpan="2" Grid.ColumnSpan="3" VerticalAlignment="top" Margin="0,230,0,0" Width="890">
+                <WrapPanel Grid.RowSpan="2" Grid.ColumnSpan="3" VerticalAlignment="top" Margin="0,200,0,0" Width="890">
                     <ListView Name="SeviceListView" Margin="0,0,0,0">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Ma dich vu" Width="200" DisplayMemberBinding="{Binding id}" />
-                                <GridViewColumn Header="Ten dich vu" Width="250" DisplayMemberBinding="{Binding service_name}" />
-                                <GridViewColumn Header="Tinh trang" Width="250" DisplayMemberBinding="{Binding description}" />
-                                <GridViewColumn Header="price" Width="200" DisplayMemberBinding="{Binding price}" />
-                            </GridView>
+                                <GridViewColumn Header="Ma dich vu" Width="170" DisplayMemberBinding="{Binding id}" />
+                                <GridViewColumn Header="Ten dich vu" Width="170" DisplayMemberBinding="{Binding name}" />
+                                <GridViewColumn Header="Đơn giá" Width="170" DisplayMemberBinding="{Binding price}" />
+                                <GridViewColumn Header="Đơn Giá" Width="170" DisplayMemberBinding="{Binding unit}" />
+                                <GridViewColumn Header="ghi chú" Width="170" DisplayMemberBinding="{Binding note}" />
+                        </GridView>
                         </ListView.View>
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">

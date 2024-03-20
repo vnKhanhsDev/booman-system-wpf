@@ -12,8 +12,10 @@ namespace booman.Views
     {
         public string IdService { get; set; }
         public string NameService { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; } // Sửa từ string sang decimal
+        public string Unit { get; set; }
+        public decimal Price { get; set; }
+        public string Note { get; set; }
+
     }
 
     public partial class ServiceManagementView : UserControl
@@ -40,20 +42,23 @@ namespace booman.Views
                 {
                     IdService = selectedRow["IdService"].ToString(),
                     NameService = selectedRow["NameService"].ToString(),
-                    Description = selectedRow["Description"].ToString(),
-                    Price = Convert.ToDecimal(selectedRow["Price"])
+                    Price = Convert.ToDecimal(selectedRow["Price"]),
+                    Unit = selectedRow["Unit"].ToString(),
+                    Note = selectedRow["Note"].ToString(),
                 };
                 textServiceid.Text = selectedService.IdService;
                 textServiceName.Text = selectedService.NameService;
-                textdesType.Text = selectedService.Description;
                 textPrice.Text = selectedService.Price.ToString();
+                textUnit.Text = selectedService.Unit;
+                textNote.Text = selectedService.Note;
+
             }
         }
 
         private void AddService(object sender, RoutedEventArgs e)
         {
             MySQLDatabaseService connectionDB = new MySQLDatabaseService();
-            connectionDB.InsertService(textServiceid.Text, textServiceName.Text, Convert.ToDecimal(textPrice.Text));
+            connectionDB.InsertService(textServiceid.Text, textServiceName.Text, Convert.ToDecimal(textPrice.Text),textUnit.Text,textNote.Text);
             MessageBox.Show("Thêm dịch vụ thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             LoadService(); // Cập nhật danh sách dịch vụ
         }
@@ -61,7 +66,7 @@ namespace booman.Views
         private void UpdateService(object sender, RoutedEventArgs e)
         {
             MySQLDatabaseService connectionDB = new MySQLDatabaseService();
-            connectionDB.UpdateService(textServiceid.Text, textServiceName.Text, Convert.ToDecimal(textPrice.Text), textdesType.Text);
+            connectionDB.UpdateService(textServiceid.Text, textServiceName.Text, Convert.ToDecimal(textPrice.Text), textUnit.Text,textNote.Text);
             MessageBox.Show("Cập nhật dịch vụ thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             LoadService(); // Cập nhật danh sách dịch vụ
         }
@@ -69,7 +74,7 @@ namespace booman.Views
         private void editService(object sender, RoutedEventArgs e)
         {
             MySQLDatabaseService connectionDB = new MySQLDatabaseService(); 
-            connectionDB.UpdateService(textServiceid.Text.ToString(), textServiceName.Text.ToString(), Convert.ToDecimal(textPrice.Text), textdesType.Text.ToString());
+            connectionDB.UpdateService(textServiceid.Text.ToString(), textServiceName.Text.ToString(), Convert.ToDecimal(textPrice.Text), textUnit.Text.ToString(), textNote.Text.ToString());
             LoadService();
         }
         
