@@ -1,5 +1,7 @@
-﻿using System;
+﻿using booman.Services;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,24 @@ namespace booman.Views
         public ServicePanelView()
         {
             InitializeComponent();
+            LoadService();
+        }
+        public void LoadService()
+        {
+            MySQLDatabaseService connection = new MySQLDatabaseService();
+            DataTable listRoom = connection.GetTableData("service");
+            ItemService.ItemsSource = listRoom.DefaultView;
+        }
+
+        private void Search_button(object sender, RoutedEventArgs e)
+        {
+            MySQLDatabaseService connectionDB = new MySQLDatabaseService();
+            DataTable search = new DataTable();
+            if (SearchText.Text != null)
+            {
+                search = connectionDB.SearchService(SearchText.Text.ToString());
+                ItemService.ItemsSource = search.DefaultView;
+            }
         }
     }
 }
