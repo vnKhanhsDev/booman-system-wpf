@@ -14,7 +14,7 @@ namespace booman.Services
         private string uid = "root";
 
 
-        private string password = "123456";
+        private string password = "12345678";
 
 
   
