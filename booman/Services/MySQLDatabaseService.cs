@@ -14,7 +14,7 @@ namespace booman.Services
         private string server = "localhost";
         private string database = "booman";
         private string uid = "root";
-        private string password = "12345678";
+        private string password = "khanh1907";
 
         public MySQLDatabaseService()
         {
@@ -250,7 +250,7 @@ namespace booman.Services
             connection.Close();
 
             connection.Open();
-            string query_4 = "UPDATE room_services SET room_num = @RoomNumChange WHERE  room_num = @RoomNumCurent";
+            string query_4 = "UPDATE room_services SET room_id = @RoomNumChange WHERE  room_id = @RoomNumCurent";
             MySqlCommand command_4 = connection.CreateCommand();
             command_4.CommandText = query_4;
             command_4.Parameters.AddWithValue("RoomNumChange", roomNumChange);
