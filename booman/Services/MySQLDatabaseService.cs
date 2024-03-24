@@ -207,6 +207,57 @@ namespace booman.Services
             connection.Close();
             return newInfo;
         }
+        public DataTable GetRoomEmpty()
+        {
+            DataTable dt = new DataTable();
+            connection.Open();
+            string query = "SELECT * FROM room WHERE status = @Status";
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = query;
+            command.Parameters.AddWithValue("Status", "empty");
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            adapter.Fill(dt);
+            connection.Close();
+            return dt;
+        }
+        public void ChangeRoom(string roomNumCurent, string roomNumChange, string status)
+        {
+            connection.Open();
+            string query = "UPDATE booked_rooms SET room_num = @RoomNumChange WHERE  room_num = @RoomNumCurent";
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = query;
+            command.Parameters.AddWithValue("RoomNumChange", roomNumChange);
+            command.Parameters.AddWithValue("RoomNumCurent", roomNumCurent);
+            command.ExecuteNonQuery();
+            connection.Close();
+
+            connection.Open();
+            string query_2 = "UPDATE room SET status = @Status WHERE room_num = @RoomNumChange";
+            MySqlCommand comand_2 = connection.CreateCommand();
+            comand_2.CommandText = query_2;
+            comand_2.Parameters.AddWithValue("Status", status);
+            comand_2.Parameters.AddWithValue("RoomNumChange", roomNumChange);
+            comand_2.ExecuteNonQuery();
+            connection.Close();
+
+            connection.Open();
+            string query_3 = "UPDATE room SET status = @Status WHERE room_num = @RoomNumCurent";
+            MySqlCommand comand_3 = connection.CreateCommand();
+            comand_3.CommandText = query_3;
+            comand_3.Parameters.AddWithValue("Status", "empty");
+            comand_3.Parameters.AddWithValue("RoomNumCurent", roomNumCurent);
+            comand_3.ExecuteNonQuery();
+            connection.Close();
+
+            connection.Open();
+            string query_4 = "UPDATE room_services SET room_num = @RoomNumChange WHERE  room_num = @RoomNumCurent";
+            MySqlCommand command_4 = connection.CreateCommand();
+            command_4.CommandText = query_4;
+            command_4.Parameters.AddWithValue("RoomNumChange", roomNumChange);
+            command_4.Parameters.AddWithValue("RoomNumCurent", roomNumCurent);
+            command_4.ExecuteNonQuery();
+            connection.Close();
+        }
         public List<RoomService> GetRoomSevice(string room_num)
         {
             DataTable dataTable = new DataTable();
