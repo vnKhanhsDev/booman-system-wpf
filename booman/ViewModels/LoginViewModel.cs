@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.ComponentModel;
-using System.Windows.Input;
 using System.Windows;
+using System.Windows.Input;
 using booman.Helpers;
 using booman.Services;
-using System.Data;
-using booman.Models;
 
 namespace booman.ViewModels
 {

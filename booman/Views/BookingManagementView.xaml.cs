@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Data;
 using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 using booman.Services;
+using booman.ViewModels;
+using booman.Views.Popups;
 
 namespace booman.Views
 {
@@ -14,14 +19,30 @@ namespace booman.Views
         public BookingManagementView()
         {
             InitializeComponent();
-            LoadRoom();
+            this.DataContext = new BookingManagementViewModel();
         }
 
-        private void LoadRoom()
+        private void ShowBookingDetail_Clicked(object sender, EventArgs e)
         {
-            MySQLDatabaseService dbService = new MySQLDatabaseService();
-            DataTable bookings = dbService.GetTableData("booking");
-            BookingDataGrid.ItemsSource = bookings.DefaultView;
+            BookingDetailView bdv = new BookingDetailView();
+            // Tìm DashboardView trong cây phân cấp
+            DashboardView dashboardView = FindParent<DashboardView>(this);
+            if (dashboardView != null)
+            {
+                // Gọi phương thức trong DashboardView để hiển thị overlay
+                dashboardView.ShowOverlay(bdv);
+            }
+        }
+
+        // Phương thức để tìm kiếm một control cha cụ thể trong cây phân cấp
+        private T FindParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+            if (parentObject == null)
+                return null;
+
+            T parent = parentObject as T;
+            return parent ?? FindParent<T>(parentObject);
         }
     }
 }

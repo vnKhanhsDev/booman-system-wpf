@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="booman.Views.Popups.BookingDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1200">
+    <Grid Width="1200" Height="650">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Width="800" Height="500" Background="White" CornerRadius="25" Padding="20 15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Title Form-->
+                <TextBlock Grid.Row="0" Text="Đơn đặt phòng" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <!--Customer Info-->
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Thông tin khách hàng" FontSize="16" FontWeight="Medium" Margin="0 20 0 15"/>
+                    <WrapPanel Grid.Row="1" Margin="0 0 0 15">
+                        <Label Content="Mã:" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Width="120" Margin="0 0 80 0"/>
+                        <Label Content="Họ tên:" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Width="200"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="2" Margin="0 0 0 15">
+                        <Label Content="Số điện thoại:" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Width="180" Margin="0 0 80 0"/>
+                        <Label Content="Địa chỉ email:" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Width="200"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="3" Margin="0 0 0 15">
+                        <Label Content="Địa chỉ:" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Width="350"/>
+                    </WrapPanel>
+                </Grid>
+                
+                <!--Booking Info-->
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Thông tin khách hàng" FontSize="16" FontWeight="Medium" Margin="0 20 0 15"/>
+                    <WrapPanel Grid.Row="1" Margin="0 0 0 15">
+                        <Label Content="Mã:" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Width="120" Margin="0 0 80 0"/>
+                        <Label Content="Họ tên:" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Width="200"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="2" Margin="0 0 0 15">
+                        <Label Content="Số điện thoại:" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Width="180" Margin="0 0 80 0"/>
+                        <Label Content="Địa chỉ email:" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Width="200"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Row="3" Margin="0 0 0 15">
+                        <Label Content="Địa chỉ:" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBox Width="350"/>
+                    </WrapPanel>
+                </Grid>
+
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -5,22 +5,103 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1000">
-    <Grid Background="White">
+    <Grid Background="#EFF2F7">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <DataGrid x:Name="BookingDataGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Margin="5"/>
+        <!-- Header Content -->
+        <Grid Grid.Row="0" Margin="20 0 20 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
+            <TextBlock Text="Đơn đặt phòng" VerticalAlignment="Center" FontSize="28" FontWeight="Bold"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0 15">
+                <Image Source="../Assets/Images/bell.png" Width="20" Height="20" Margin="0 0 25 0"/>
+                <Ellipse Width="50" Height="50" Margin="0 0 5 0">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="../Assets/Images/avatar_user.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock Text="Vũ Nam Khánh" FontSize="14" FontWeight="Bold" Foreground="#212121"/>
+                    <TextBlock Text="Quản trị viên" FontSize="11" FontWeight="SemiBold" Foreground="#5c5c5c"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <!-- Top Main Content -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <UniformGrid Grid.Row="0" Rows="1">
+                <WrapPanel>
+                    <Border Width="45" Height="45" Background="Red" CornerRadius="3">
+                        <TextBlock Text="{Binding NumDepositing}" Foreground="White" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Label Content="Đang đặt cọc" VerticalAlignment="Center" FontSize="14"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Border Width="45" Height="45" Background="Red" CornerRadius="3">
+                        <TextBlock Text="{Binding NumPendingCheckIn}" Foreground="White" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Label Content="Chờ nhận phòng" VerticalAlignment="Center" FontSize="14"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Border Width="45" Height="45" Background="Red" CornerRadius="3">
+                        <TextBlock Text="{Binding NumPendingCheckOut}" Foreground="White" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Label Content="Chờ trả phòng" VerticalAlignment="Center" FontSize="14"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Border Width="45" Height="45" Background="Red" CornerRadius="3">
+                        <TextBlock Text="{Binding NumCompleted}" Foreground="White" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Label Content="Hoàn thành" VerticalAlignment="Center" FontSize="14"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Border Width="45" Height="45" Background="Red" CornerRadius="3">
+                        <TextBlock Text="{Binding NumCancelled}" Foreground="White" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Label Content="Đã huỷ" VerticalAlignment="Center" FontSize="14"/>
+                </WrapPanel>
+            </UniformGrid>
+
+            <WrapPanel Grid.Row="1" Margin="0 15 0 0">
+                <Label Content="Tìm kiếm:"/>
+                <TextBox Width="100" Height="30"/>
+                <Label Content="Lọc"/>
+                <Button Content="Tạo đơn"/>
+            </WrapPanel>
+        </Grid>
+        
+        <!--Main Content-->
+        <DataGrid ItemsSource="{Binding Bookings}" Grid.Row="2" Margin="20 0 20 20" AutoGenerateColumns="False" SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã đơn" Binding="{Binding ID}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Ngày đặt phòng" Binding="{Binding BookingDate}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Ngày nhận phòng" Binding="{Binding CheckInDate}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Ngày trả phòng" Binding="{Binding CheckOutDate}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" IsReadOnly="True" Width="*"/>
+                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Xem" Click="ShowBookingDetail_Clicked"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

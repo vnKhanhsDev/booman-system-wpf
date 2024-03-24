@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:viewmodel="clr-namespace:booman.ViewModels"
              xmlns:view="clr-namespace:booman.Views"
              mc:Ignorable="d" 
@@ -37,42 +38,88 @@
     </UserControl.Resources>
 
     <!--Dashboard Content-->
-    <Grid Background="White">
-
+    <Grid Background="#EFF2F7">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <DockPanel Background="DarkBlue" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
-            <StackPanel >
-                <Label Content="BOOMAN" HorizontalAlignment="Center" Foreground="White" Height="40" FontSize="24" Margin="0,30,0,0"></Label>
-                <Label Content="HOTEL" HorizontalAlignment="Center" Foreground="White" Height="40" FontSize="16"></Label>
+        <!--Left Menu-->
+        <DockPanel Grid.Column="0">
+            <DockPanel.Background>
+                <ImageBrush ImageSource="../Assets/Images/sidebar_background.png" Stretch="Fill"/>
+            </DockPanel.Background>
 
-                <Button Content="Tài khoản nhân viên" Click="AccountManagement_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5,15,5,5" FontSize="16"/>
-                <Button Content="Thông tin chung" Click="GeneralInfoManagement_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5,15,5,5" FontSize="16"/>
-                <Button Content="Phòng" Click="RoomManagement_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5,15,5,5" FontSize="16"/>
-                <Button Content="Sơ đồ phòng" Click="RoomMap_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5,15,5,5" FontSize="16"/>
-                <Button Content="Dịch vụ" Click="ServiceManagement_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5,15,5,5" FontSize="16"/>
-                <Button Content="Bảng dịch vụ" Click="ServicePanel_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5,15,5,5" FontSize="16"/>
-                <Button Content="Đặt phòng" Click="BookingManagement_Clicked" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5,15,5,5" FontSize="16"/>
-                <Button Content="Báo cáo thống kê" Background="DarkBlue" Foreground="White" BorderBrush="White" Height="50" Margin="5,15,5,5" FontSize="16"/>
+            <!--Menu Title-->
+            <TextBlock Text="BOOMAN" Foreground="White" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0 15"/>
 
+            <Separator Margin="15 10" Background="White" DockPanel.Dock="Top" Height="0.5"/>
+
+            <!--Menu Buttons-->
+            <StackPanel DockPanel.Dock="Top">
+                <Button x:Name="accountBtn" Style="{StaticResource menuButton}" Click="AccountManagement_Clicked">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Account" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Tài khoản nhân viên"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="generalInfoBtn" Style="{StaticResource menuButton}" Click="GeneralInfoManagement_Clicked">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Information" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Thông tin chung"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="roomBtn" Style="{StaticResource menuButton}" Click="RoomManagement_Clicked">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="BedEmpty" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Phòng"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="roomMapBtn" Style="{StaticResource menuButton}" Click="RoomMap_Clicked">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="BedKing" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Sơ đồ phòng"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="serviceBtn" Style="{StaticResource menuButton}" Click="ServiceManagement_Clicked">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="RoomServiceOutline" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Dịch vụ"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="servicePanelBtn" Style="{StaticResource menuButton}" Click="ServicePanel_Clicked">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="RoomService" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Bảng dịch vụ"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="bookingBtn" Style="{StaticResource menuButton}" Click="BookingManagement_Clicked">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="CalendarCheck" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Đặt phòng"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="reportBtn" Style="{StaticResource menuButton}" Click="Report_Clicked">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="FileDocumentMultiple" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Báo cáo thống kê"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
+
+            <Button Style="{StaticResource menuButtonNoTrigger}" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}" Margin="0 0 10 0"/>
+                    <TextBlock Text="Đăng xuất"/>
+                </StackPanel>
+            </Button>
         </DockPanel>
 
+        <!--Main Section-->
+        <ContentControl Grid.Column="1" Content="{Binding}"/>
 
-        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="6" Content="{Binding}"/>
+        <StackPanel x:Name="OverlayGrid" Visibility="Collapsed" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="6" Background="#80000000" VerticalAlignment="Center">
 
+        </StackPanel>
     </Grid>
 </UserControl>
