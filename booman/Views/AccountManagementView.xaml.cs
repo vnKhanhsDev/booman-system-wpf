@@ -43,22 +43,24 @@ namespace booman.Views
             textBox_role.Text = string.Empty;
             textBox_pass.Text = string.Empty;
         }
-        
+
         private void AddAccount_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             MySQLDatabaseService connectionDB = new MySQLDatabaseService();
-            connectionDB.InsertAccount(textBox_phone.Text.ToString(), textBox_email.Text.ToString(), textBox_pass.Text.ToString(), textBox_fullName.Text.ToString(), textBox_role.Text.ToString());
-            MessageBoxResult result = MessageBox.Show("Thêm thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            if (result == MessageBoxResult.OK)
+            bool success = connectionDB.InsertAccount(textBox_phone.Text.ToString(), textBox_email.Text.ToString(), textBox_pass.Text.ToString(), textBox_fullName.Text.ToString(), textBox_role.Text.ToString());
+            if (success)
             {
+                MessageBox.Show("Thêm thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 LoadAccount();
                 ClearInputFields();
             }
             else
             {
-                MessageBox.Show("Lỗi: " + "Không thêm vào được", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Tài khoản đã tồn tại, thử lại sau.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                ClearInputFields();
             }
         }
+
         private void dataGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dataGridView.SelectedItem != null)

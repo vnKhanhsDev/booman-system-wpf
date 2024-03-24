@@ -316,19 +316,46 @@ namespace booman.Services
 
 
         // Account management
-        public void InsertAccount(string phone, string email, string password, string fullName, string role)
+        public bool InsertAccount(string phone, string email, string password, string fullName, string role)
         {
-            connection.Open();
-            string query = "INSERT INTO account(phone, email, password, full_name, role) VALUES (@Phone, @Email, @Password, @FullName, @Role)";
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = query;
-            command.Parameters.AddWithValue("@Phone", phone);
-            command.Parameters.AddWithValue("@Email", email);
-            command.Parameters.AddWithValue("@Password", password);
-            command.Parameters.AddWithValue("@FullName", fullName);
-            command.Parameters.AddWithValue("@Role", role);
-            command.ExecuteNonQuery();
-            connection.Close();
+            try
+            {
+                connection.Open();
+                // Kiểm tra xem tài khoản đã tồn tại hay chưa
+                string checkQuery = "SELECT COUNT(*) FROM account WHERE email = @Email OR phone = @Phone";
+                MySqlCommand checkCommand = new MySqlCommand(checkQuery, connection);
+                checkCommand.Parameters.AddWithValue("@Email", email);
+                checkCommand.Parameters.AddWithValue("@Phone", phone);
+                int existingAccountsCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                if (existingAccountsCount > 0)
+                {
+                    // Tài khoản đã tồn tại, không thể thêm vào
+                    return false;
+                }
+
+                // Tài khoản không tồn tại, tiến hành thêm vào cơ sở dữ liệu
+                string insertQuery = "INSERT INTO account(phone, email, password, full_name, role) VALUES (@Phone, @Email, @Password, @FullName, @Role)";
+                MySqlCommand command = new MySqlCommand(insertQuery, connection);
+                command.Parameters.AddWithValue("@Phone", phone);
+                command.Parameters.AddWithValue("@Email", email);
+                command.Parameters.AddWithValue("@Password", password);
+                command.Parameters.AddWithValue("@FullName", fullName);
+                command.Parameters.AddWithValue("@Role", role);
+                command.ExecuteNonQuery();
+
+                return true; // Thêm tài khoản thành công
+            }
+            catch (Exception ex)
+            {
+                // Xử lý nếu có lỗi xảy ra
+                Console.WriteLine("Lỗi khi thêm tài khoản: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         public void UpdateAccount(string phone, string email, string password, string fullName, string role)
