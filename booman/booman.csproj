@@ -228,8 +228,13 @@
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Booking.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\Customer.cs" />
+=======
+    <Compile Include="Models\InfoRoomMap.cs" />
+>>>>>>> c76762260b775aab53f7cd88c6639ada2e6fb074
     <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\RoomService.cs" />
     <Compile Include="Services\MySQLDatabaseService.cs" />
     <Compile Include="Services\SQLiteDatabaseService.cs" />
     <Compile Include="ViewModels\AccountManagementViewModel.cs" />

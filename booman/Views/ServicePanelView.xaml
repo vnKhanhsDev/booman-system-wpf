@@ -5,8 +5,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:booman.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Yellow">
-            
-    </Grid>
+             d:DesignHeight="650" d:DesignWidth="1000" Background="White">
+    <StackPanel>
+        <Label Content="Bảng Dịch Vụ" HorizontalContentAlignment="Center" FontSize="28" FontWeight="Bold"></Label>
+        <WrapPanel HorizontalAlignment="Right" Margin="-3,12,0,0">
+            <TextBox x:Name="SearchText" TextWrapping="Wrap" Width="216" FontSize="14" HorizontalAlignment="Center" />
+            <Button Content="Tìm kiếm" Margin="8,0,50,0" FontSize="14" Padding="8,4,8,4" Click="Search_button"/>
+        </WrapPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="450" Margin="50,24,50,0">
+            <ItemsControl x:Name="ItemService">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button 
+                Width="155" Height="140"
+                Margin="8"
+                Command="{Binding DataContext.ServiceSelectedCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                CommandParameter="{Binding}" >
+                            <StackPanel>
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <Label Content="Dịch Vụ:" FontStyle="Normal" FontWeight="Bold" FontSize="14"></Label>
+                                    <Label Content="{Binding name}" FontSize="14"/>
+                                </WrapPanel>
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <Label Content="Giá:" FontWeight="Bold" FontSize="12"></Label>
+                                    <Label Content="{Binding price}"/>
+                                </WrapPanel>
+                                <WrapPanel HorizontalAlignment="Center">
+                                    <Label Content="Đơn vị:" FontWeight="Bold" FontSize="12"></Label>
+                                    <Label Content="{Binding unit}"/>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </StackPanel>
 </UserControl>

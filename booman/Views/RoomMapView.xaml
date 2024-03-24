@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Grid>
+        <Grid x:Name="ViewMapRoom">
             <StackPanel>
                 <Label Content="Sơ đồ phòng" HorizontalContentAlignment="Center" FontSize="28" FontWeight="Bold"/>
                 <WrapPanel HorizontalAlignment="Right" Margin="-3,12,0,0">
@@ -37,19 +37,121 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button 
+                                <Button x:Name="itemRoom"
+                                ToolTip="{Binding room_num}"
+                                Click="Button_Click"
                                 Width="155" Height="140"
                                 Margin="8"
                                 Command="{Binding DataContext.RoomSelectedCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-                                CommandParameter="{Binding}" >
+                                CommandParameter="{Binding}">
                                     <StackPanel>
                                         <WrapPanel HorizontalAlignment="Center">
                                             <Label Content="Phòng:" FontStyle="Normal" FontWeight="Bold" FontSize="14"></Label>
-                                            <Label Content="{Binding room_num}" FontSize="14"/>
+                                            <Label x:Name="roomNum" Content="{Binding room_num}" FontSize="14"/>
                                         </WrapPanel>
                                         <WrapPanel HorizontalAlignment="Center">
                                             <Label Content="Trạng thái:" FontWeight="Bold" FontSize="12"></Label>
-                                            <Label Content="{Binding status}"/>
+                                            <Label x:Name="roomStatus" Content="{Binding status}"/>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="ViewInfoRoom" Visibility="Collapsed" Background="White">
+            <StackPanel>
+                <Button Content="Trở về" HorizontalAlignment="Left" Margin="20,10,0,0" FontSize="16" Padding="8,4,8,4" Click="BackPage"/>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Label Content="Phòng " FontSize="28" FontWeight="Bold"/>
+                    <Label x:Name="labelRoomNum" Content="{Binding}" FontSize="26" FontWeight="Bold"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Label Content="Trạng thái: " FontSize="13"/>
+                    <Label x:Name="labelRoomStatus" Content="{Binding}" FontSize="13" />
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <StackPanel >
+                        <Label Content="Thông tin khách hàng" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"></Label>
+                        <WrapPanel HorizontalAlignment="Center" Width="300">
+                            <Label Content="Họ và tên: " FontSize="13" FontWeight="Bold"/>
+                            <Label x:Name="labelName" Content="{Binding}" FontSize="13" />
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center" Width="300">
+                            <Label Content="Số điện thoại: " FontSize="13" FontWeight="Bold"/>
+                            <Label x:Name="labelPhone" Content="{Binding}" FontSize="13" />
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center" Width="300">
+                            <Label Content="Email: " FontSize="13" FontWeight="Bold"/>
+                            <Label x:Name="labelEmail" Content="{Binding}" FontSize="13" />
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center" Width="300">
+                            <Label Content="Lịch nhận phòng: " FontSize="13" FontWeight="Bold"/>
+                            <Label x:Name="labelCheckinDate" Content="{Binding}" FontSize="13" />
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center" Width="300">
+                            <Label Content="Ngày lưu trú: " FontSize="13" FontWeight="Bold"/>
+                            <Label x:Name="labelStayDuration" Content="{Binding}" FontSize="13" />
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center" Width="300" VerticalAlignment="Center">
+                            <Label Content="Thời gian nhận phòng: " FontSize="13" FontWeight="Bold"/>
+                            <Label x:Name="labelCheckinTime" Content= "{Binding}" FontSize="13" />
+                        </WrapPanel>
+                    </StackPanel>
+                    <StackPanel Margin="15,0,0,0" >
+                        <Label Content="Dịch vụ sử dụng" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"></Label>
+                        <WrapPanel HorizontalAlignment="Center" Width="300">
+                            <ItemsControl x:Name="listRoomService"  Margin="5">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <WrapPanel>
+                                                <Label Content="Dịch vụ: " FontSize="13" FontWeight="Bold"/>
+                                                <Label x:Name="labelNameService" Content="{Binding Name}" FontSize="13"/>
+                                                <Label Content="Số lượng:" FontSize="13" FontWeight="Bold"/>
+                                                <Label x:Name="labelQuantityService" Content="{Binding Quantity}" FontSize="13"/>
+                                            </WrapPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </WrapPanel>
+                    </StackPanel>
+                </WrapPanel>
+                <Button x:Name="buttonChanging" Visibility="Collapsed" Content="Đổi phòng" Margin="0,20,0,0" HorizontalAlignment="Center" Padding="8,1,8,1" FontSize="14" Click="ViewChanging"/>
+
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="ViewChangeRoom" Background="White" Visibility="Collapsed">
+            <StackPanel>
+                <Button Content="Trở về" HorizontalAlignment="Left" Margin="20,10,0,0" FontSize="16" Padding="8,4,8,4" Click="BackPageRoomMap"/>
+                <Label Content="Danh sách phòng trống" HorizontalContentAlignment="Center" FontSize="28" FontWeight="Bold"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350" Margin="50,24,50,0">
+                    <ItemsControl x:Name="ItemRoomEmpty">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button x:Name="itemRoomEmpty"
+                                ToolTip="{Binding room_num}"
+                                Click="ClickChange"
+                                Width="155" Height="140"
+                                Margin="8"
+                                Command="{Binding DataContext.RoomSelectedCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding}">
+                                    <StackPanel>
+                                        <WrapPanel HorizontalAlignment="Center">
+                                            <Label Content="Phòng:" FontStyle="Normal" FontWeight="Bold" FontSize="14"></Label>
+                                            <Label x:Name="roomNum" Content="{Binding room_num}" FontSize="14"/>
+                                        </WrapPanel>
+                                        <WrapPanel HorizontalAlignment="Center">
+                                            <Label Content="Trạng thái:" FontWeight="Bold" FontSize="12"></Label>
+                                            <Label x:Name="roomStatus" Content="{Binding status}"/>
                                         </WrapPanel>
                                     </StackPanel>
                                 </Button>
