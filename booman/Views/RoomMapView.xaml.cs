@@ -1,4 +1,5 @@
-﻿using booman.Services;
+﻿using booman.Models;
+using booman.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -80,6 +81,84 @@ namespace booman.Views
             {
                 search = connectionDB.SearchRoom(SearchText.Text.ToString());
                 ItemRoom.ItemsSource = search.DefaultView;
+            }
+            emptyRadioButton.IsChecked = false;
+            bookingRadioButton.IsChecked = false;
+            usingRadioButton.IsChecked = false;
+            standardRadioButton.IsChecked = false;
+            vipRadioButton.IsChecked = false;
+
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Button button = sender as Button;
+            string infoRoomNumber = button.ToolTip.ToString();
+            labelRoomNum.DataContext = infoRoomNumber;
+            Label labelStatus = button.FindName("roomStatus") as Label;
+            string infoRoomStatus = labelStatus.Content.ToString();
+            labelRoomStatus.DataContext = infoRoomStatus;
+            InfoRoomMap info = new InfoRoomMap();
+            List<RoomService> listService = new List<RoomService>();
+            if (infoRoomStatus != "empty")
+            {
+                buttonChanging.Visibility = Visibility.Visible;
+                MySQLDatabaseService connectionDB = new MySQLDatabaseService();
+                info = connectionDB.InfoRoomInRoomMap(infoRoomNumber);
+                listService = connectionDB.GetRoomSevice(infoRoomNumber);
+            }
+            if(info.Act_checkin_time == null)
+            {
+                labelCheckinTime.Visibility = Visibility.Collapsed;
+            }
+
+            listRoomService.ItemsSource = listService;
+
+            labelName.DataContext = info.Name;
+            labelPhone.DataContext = info.Phone;
+            labelEmail.DataContext = info.Email;
+            labelCheckinDate.DataContext = info.Checkin_date;
+            labelStayDuration.DataContext = info.Stay_duration;
+            labelCheckinTime.DataContext = info.Act_checkin_time;
+            ViewInfoRoom.Visibility = Visibility.Visible;
+        }
+
+        private void BackPage(object sender, RoutedEventArgs e)
+        {
+            ViewInfoRoom.Visibility = Visibility.Collapsed;
+        }
+        private void BackPageRoomMap(object sender, RoutedEventArgs e)
+        {
+            ViewChangeRoom.Visibility = Visibility.Collapsed;
+        }
+        private void ViewChanging(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn đổi phòng không?", "Xác nhận", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                ViewChangeRoom.Visibility = Visibility.Visible;
+                MySQLDatabaseService connectionDB = new MySQLDatabaseService();
+                DataTable roomEmpty = connectionDB.GetRoomEmpty();
+                ItemRoomEmpty.ItemsSource = roomEmpty.DefaultView;
+            }           
+        }
+        private void ClickChange(object sender, RoutedEventArgs e)
+        {   string roomNumCurent = labelRoomNum.Content.ToString();
+            string statusRoomCurent = labelRoomStatus.Content.ToString(); 
+            Button button = sender as Button;
+            string roomNumChange = button.ToolTip.ToString();
+            MessageBoxResult result = MessageBox.Show($"Bạn có chắc chắn muốn đổi sang phòng {roomNumChange} không?", "Xác nhận", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                MySQLDatabaseService connectionDB = new MySQLDatabaseService();
+                connectionDB.ChangeRoom(roomNumCurent, roomNumChange, statusRoomCurent);
+                MessageBoxResult result_2 = MessageBox.Show("Đổi phòng thành công", "Xác nhận", MessageBoxButton.OK);
+                if (result_2 == MessageBoxResult.OK)
+                {
+                    ViewChangeRoom.Visibility = Visibility.Collapsed;
+                    ViewInfoRoom.Visibility = Visibility.Collapsed;
+                    LoadRoom();
+                }
             }
         }
     }

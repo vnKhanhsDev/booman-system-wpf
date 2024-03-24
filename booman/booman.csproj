@@ -129,7 +129,9 @@
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\InfoRoomMap.cs" />
     <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\RoomService.cs" />
     <Compile Include="Services\MySQLDatabaseService.cs" />
     <Compile Include="Services\SQLiteDatabaseService.cs" />
     <Compile Include="ViewModels\AccountManagementViewModel.cs" />
