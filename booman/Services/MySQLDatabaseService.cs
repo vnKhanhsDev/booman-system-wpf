@@ -14,7 +14,7 @@ namespace booman.Services
         private string server = "localhost";
         private string database = "booman";
         private string uid = "root";
-        private string password = "khanh1907";
+        private string password = "diep0411";
 
         public MySQLDatabaseService()
         {
