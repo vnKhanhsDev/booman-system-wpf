@@ -37,7 +37,7 @@
         # Mật khẩu của UID trong MySQL
         private string password = "abcdef";
     ```
-* Bước 3: Chạy chương trình
+* Bước 3: Chạy chương trình, có thể sử dụng tài khoản taikhoantest@gmail.com và mật khẩu là 123456 để đăng nhập
 ## Authors
 
 - [@vnKhanhsDev](https://github.com/vnKhanhsDev) - Vũ Nam Khánh - 21012879
