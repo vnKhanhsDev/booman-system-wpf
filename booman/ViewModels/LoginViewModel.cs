@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using booman.Helpers;
 using booman.Services;
+using booman.Views;
 
 namespace booman.ViewModels
 {

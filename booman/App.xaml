@@ -6,6 +6,76 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
+        <!--Begin: Style Buttons-->
+        
+        <!--Base Button-->
+        <Style x:Key="baseBtn" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4256D0"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="baseBtnIcon" TargetType="Icon:PackIconMaterial">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="15"/>
+            <Setter Property="Height" Value="15"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+        
+        <!--Header Back Button-->
+        <Style x:Key="headerBackBtn" BasedOn="{StaticResource baseBtn}" TargetType="Button">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="#A1A1AA"/>
+        </Style>
+        <Style x:Key="headerBackBtnIcon" BasedOn="{StaticResource baseBtnIcon}" TargetType="Icon:PackIconMaterial">
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Height" Value="10"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+        
+        <!--Form Button-->
+        <Style x:Key="formBtn" BasedOn="{StaticResource baseBtn}" TargetType="Button">
+            <Setter Property="Background" Value="#A1A1AA"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" Padding="15,8" Margin="20,0,0,0" CornerRadius="5">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="formBtnIcon" BasedOn="{StaticResource baseBtnIcon}" TargetType="Icon:PackIconMaterial">
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Height" Value="8"/>
+        </Style>
+
+        <!--End: Style Buttons-->
+        
+        
+
         <Style x:Key="menuButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -50,6 +120,70 @@
             <Setter Property="Width" Value="15" />
             <Setter Property="Height" Value="15" />
         </Style>
+
+        <!--Element Style Booking Detail Form-->
+        <Style x:Key="titleSection" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0 0 0 5"/>
+        </Style>
+        <Style x:Key="labelField" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="labelFieldRight" BasedOn="{StaticResource labelField}" TargetType="Label">
+            <Setter Property="Margin" Value="30 0 0 0"/>
+        </Style>
+
+        
+        
+        
+        <!--Begin: Style TextBoxs-->
+        
+        <!--Base TextBox-->
+        <Style x:Key="baseTextBox" TargetType="TextBox">
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5 0"/>
+            <Setter Property="Margin" Value="0 8"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <!--End: Style TextBoxs-->
+
+        
+        
+        
+        <!--Begin: Style DatePicker-->
+
+        <!--Base DatePicker-->
+        <Style x:Key="baseDatePicker" TargetType="DatePicker">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5 0"/>
+            <Setter Property="Margin" Value="0 8"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        
+        <!--End: Style DatePicker-->
+
+
+        <!--Begin: Number of bookings by status-->
+        <Style x:Key="nobContainer" TargetType="Border">
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
+        <Style x:Key="nobTxtNumber" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <!--End: Number of bookings by status-->
+        
 
     </Application.Resources>
 </Application>

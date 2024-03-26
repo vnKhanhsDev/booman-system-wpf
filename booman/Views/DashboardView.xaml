@@ -39,13 +39,17 @@
 
     <!--Dashboard Content-->
     <Grid Background="#EFF2F7">
+        <Grid.RowDefinitions>
+            <!--<RowDefinition Height="80"/>-->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!--Left Menu-->
-        <DockPanel Grid.Column="0">
+        <DockPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
             <DockPanel.Background>
                 <ImageBrush ImageSource="../Assets/Images/sidebar_background.png" Stretch="Fill"/>
             </DockPanel.Background>
@@ -115,11 +119,43 @@
             </Button>
         </DockPanel>
 
+        <!--Header Section-->
+        <Grid Grid.Row="0" Grid.Column="1" Margin="20 0" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Tittle Main Section-->
+            <TextBlock Grid.Column="0" x:Name="titleMainSection" VerticalAlignment="Center" FontSize="28" FontWeight="Bold"/>
+
+            <!--Right Header-->
+            <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <!--Notification Button-->
+                <Button Style="{StaticResource baseBtn}" Width="30" Height="30" Margin="0,3,20,0">
+                    <Icon:PackIconMaterial Kind="Bell" Foreground="Black" Width="18" Height="18"/>
+                </Button>
+
+                <!--User Info-->
+                <Button Background="Transparent" BorderThickness="0">
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Width="50" Height="50" Margin="5,0">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="../Assets/Images/avatar_user.png"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                            <TextBlock x:Name="txtName" Text="Khanh Nam Vu" FontSize="14" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="txtRole" Text="Quản trị viên" FontSize="10" Foreground="#5c5c5c"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Button>
+
+            </WrapPanel>
+
+        </Grid>
+
         <!--Main Section-->
         <ContentControl Grid.Column="1" Content="{Binding}"/>
-
-        <StackPanel x:Name="OverlayGrid" Visibility="Collapsed" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="6" Background="#80000000" VerticalAlignment="Center">
-
-        </StackPanel>
     </Grid>
 </UserControl>

@@ -14,12 +14,16 @@ namespace booman.Services
         private string server = "localhost";
         private string database = "booman";
         private string uid = "root";
-        private string password = "khanh1907";
+        private string password = "304082";
 
+        // Constructors
         public MySQLDatabaseService()
         {
             ConnectToDatabase();
         }
+
+        // Properties
+        public MySqlConnection Connection { get { return connection; } }
 
         // Methods
         private void ConnectToDatabase()
@@ -50,7 +54,7 @@ namespace booman.Services
 
             return dataTable;
         }
-        public void InsertRoom(string roomNumber, string quality,string bedType, decimal price)
+        public void InsertRoom(string roomNumber, string quality, string bedType, decimal price)
         {
             connection.Open();
             string query = "INSERT INTO `room` (`room_num`, `quality_class`, `bed_type_class`, `price`, `status`) VALUES (@RoomNumber, @Quality, @BedType, @Price, @Status)";
@@ -68,13 +72,13 @@ namespace booman.Services
         {
             connection.Open();
             string query = "DELETE FROM room WHERE room_num = @RoomNumber";
-            MySqlCommand command = connection.CreateCommand();  
+            MySqlCommand command = connection.CreateCommand();
             command.CommandText = query;
             command.Parameters.AddWithValue("@RoomNumber", roomNumber);
             command.ExecuteNonQuery();
             connection.Close();
         }
-        public void UpdateRoom(string roomNumber, string quality,string bedType, decimal price, string status)
+        public void UpdateRoom(string roomNumber, string quality, string bedType, decimal price, string status)
         {
             connection.Open();
             string query = "UPDATE room SET quality_class = @Quality, bed_type_class = @BedType, price = @Price, status = @Status WHERE room_num = @RoomNumber";
@@ -88,7 +92,7 @@ namespace booman.Services
             command.ExecuteNonQuery();
             connection.Close();
         }
-        public void InsertService(string idService, string nameService, decimal price,string unitService,string noteService)
+        public void InsertService(string idService, string nameService, decimal price, string unitService, string noteService)
         {
             connection.Open();
             string query = "INSERT INTO service(id,name,price,unit,note) VALUES (@ServiceId, @ServiceName,@Price,@Unit,@Note)";

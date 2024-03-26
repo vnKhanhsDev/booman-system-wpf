@@ -16,14 +16,14 @@ namespace booman.Models
         private int stayDuration;
         private DateTime checkOutDate;
         // private List<Room> bookedRooms;
-        private DateTime actCheckInTime;
-        private DateTime actCheckOutTime;
+        private DateTime? actCheckInTime;
+        private DateTime? actCheckOutTime;
         private string specialRequest;
         private string status;
 
         // Constructors
         public Booking() { }
-        public Booking(string id, string customerID, DateTime bookingDate, DateTime checkInDate, int stayDuration, DateTime checkOutDate, List<Room> bookedRooms, DateTime actCheckInTime, DateTime actCheckOutTime, string specialRequest, string status)
+        public Booking(string id, string customerID, DateTime bookingDate, DateTime checkInDate, int stayDuration, DateTime checkOutDate, DateTime? actCheckInTime, DateTime? actCheckOutTime, string specialRequest, string status)
         {
             this.id = id;
             this.customerID = customerID;
@@ -31,7 +31,6 @@ namespace booman.Models
             this.checkInDate = checkInDate;
             this.stayDuration = stayDuration;
             this.checkOutDate = checkOutDate;
-            // this.bookedRooms = bookedRooms;
             this.actCheckInTime = actCheckInTime;
             this.actCheckOutTime = actCheckOutTime;
             this.specialRequest = specialRequest;
@@ -69,12 +68,12 @@ namespace booman.Models
             get { return this.checkOutDate; }
             set { this.checkOutDate = value; }
         }
-        public DateTime ActCheckInTime
+        public DateTime? ActCheckInTime
         {
             get { return this.actCheckInTime; }
             set { this.actCheckInTime = value; }
         }
-        public DateTime ActCheckOutTime
+        public DateTime? ActCheckOutTime
         {
             get { return this.actCheckOutTime; }
             set { this.actCheckOutTime = value; }

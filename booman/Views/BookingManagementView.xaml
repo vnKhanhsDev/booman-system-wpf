@@ -3,105 +3,241 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1000">
+
     <Grid Background="#EFF2F7">
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Header Content -->
-        <Grid Grid.Row="0" Margin="20 0 20 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Text="Đơn đặt phòng" VerticalAlignment="Center" FontSize="28" FontWeight="Bold"/>
-
-            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0 15">
-                <Image Source="../Assets/Images/bell.png" Width="20" Height="20" Margin="0 0 25 0"/>
-                <Ellipse Width="50" Height="50" Margin="0 0 5 0">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="../Assets/Images/avatar_user.png"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <TextBlock Text="Vũ Nam Khánh" FontSize="14" FontWeight="Bold" Foreground="#212121"/>
-                    <TextBlock Text="Quản trị viên" FontSize="11" FontWeight="SemiBold" Foreground="#5c5c5c"/>
-                </StackPanel>
-            </StackPanel>
-        </Grid>
-
-        <!-- Top Main Content -->
-        <Grid Grid.Row="1" Margin="20">
+        
+        <!--Show Booking List-->
+        <Grid x:Name="bookingList" Visibility="Visible">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <UniformGrid Grid.Row="0" Rows="1">
-                <WrapPanel>
-                    <Border Width="45" Height="45" Background="Red" CornerRadius="3">
-                        <TextBlock Text="{Binding NumDepositing}" Foreground="White" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <Label Content="Đang đặt cọc" VerticalAlignment="Center" FontSize="14"/>
-                </WrapPanel>
-                <WrapPanel HorizontalAlignment="Center">
-                    <Border Width="45" Height="45" Background="Red" CornerRadius="3">
-                        <TextBlock Text="{Binding NumPendingCheckIn}" Foreground="White" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <Label Content="Chờ nhận phòng" VerticalAlignment="Center" FontSize="14"/>
-                </WrapPanel>
-                <WrapPanel HorizontalAlignment="Center">
-                    <Border Width="45" Height="45" Background="Red" CornerRadius="3">
-                        <TextBlock Text="{Binding NumPendingCheckOut}" Foreground="White" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <Label Content="Chờ trả phòng" VerticalAlignment="Center" FontSize="14"/>
-                </WrapPanel>
-                <WrapPanel HorizontalAlignment="Center">
-                    <Border Width="45" Height="45" Background="Red" CornerRadius="3">
-                        <TextBlock Text="{Binding NumCompleted}" Foreground="White" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <Label Content="Hoàn thành" VerticalAlignment="Center" FontSize="14"/>
-                </WrapPanel>
-                <WrapPanel HorizontalAlignment="Center">
-                    <Border Width="45" Height="45" Background="Red" CornerRadius="3">
-                        <TextBlock Text="{Binding NumCancelled}" Foreground="White" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <Label Content="Đã huỷ" VerticalAlignment="Center" FontSize="14"/>
-                </WrapPanel>
-            </UniformGrid>
+            <!--Number of bookings by status-->
+            <Grid Grid.Row="0" Margin="20 15">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-            <WrapPanel Grid.Row="1" Margin="0 15 0 0">
-                <Label Content="Tìm kiếm:"/>
-                <TextBox Width="100" Height="30"/>
-                <Label Content="Lọc"/>
-                <Button Content="Tạo đơn"/>
+                <UniformGrid Grid.Row="0" Rows="1">
+                    <WrapPanel>
+                        <Border Style="{StaticResource nobContainer}" Background="#FF3838">
+                            <TextBlock Text="{Binding NumDepositing}" Style="{StaticResource nobTxtNumber}"/>
+                        </Border>
+                        <Label Content="Đang đặt cọc" VerticalAlignment="Center" FontSize="14"/>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Border Style="{StaticResource nobContainer}" Background="#FFB302">
+                            <TextBlock Text="{Binding NumPendingCheckIn}" Style="{StaticResource nobTxtNumber}"/>
+                        </Border>
+                        <Label Content="Chờ nhận phòng" VerticalAlignment="Center" FontSize="14"/>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Border Style="{StaticResource nobContainer}" Background="#FCE83A">
+                            <TextBlock Text="{Binding NumPendingCheckOut}" Style="{StaticResource nobTxtNumber}"/>
+                        </Border>
+                        <Label Content="Chờ trả phòng" VerticalAlignment="Center" FontSize="14"/>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Border Style="{StaticResource nobContainer}" Background="#56F000">
+                            <TextBlock Text="{Binding NumCompleted}" Style="{StaticResource nobTxtNumber}"/>
+                        </Border>
+                        <Label Content="Hoàn thành" VerticalAlignment="Center" FontSize="14"/>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Border Style="{StaticResource nobContainer}" Background="#A4ABB6">
+                            <TextBlock Text="{Binding NumCancelled}" Style="{StaticResource nobTxtNumber}"/>
+                        </Border>
+                        <Label Content="Đã huỷ" VerticalAlignment="Center" FontSize="14"/>
+                    </WrapPanel>
+                </UniformGrid>
+            </Grid>
+
+            <!--Function of list-->
+            <WrapPanel Grid.Row="1" Margin="20 10" HorizontalAlignment="Right">
+
+                <!--Search-->
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Width="150"/>
+                    <Button Content="Tìm kiếm"/>
+                </StackPanel>
+
+                <!--Filter-->
+                <ComboBox Width="50" Text="Lọc" Margin="20,0,0,0">
+                    <ComboBoxItem Content="Đang đặt cọc"/>
+                    <ComboBoxItem Content="Chờ nhận phòng"/>
+                    <ComboBoxItem Content="Chờ trả phòng"/>
+                    <ComboBoxItem Content="Hoàn thành"/>
+                    <ComboBoxItem Content="Đã huỷ"/>
+                </ComboBox>
+
+                <!--Create booking button-->
+                <Button x:Name="createBookingBtn" Style="{StaticResource formBtn}" Click="CreateBookingBtn_Clicked">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Plus" Style="{StaticResource formBtnIcon}"/>
+                        <TextBlock Text="Tạo đơn"/>
+                    </StackPanel>
+                </Button>
+
             </WrapPanel>
+
+            <!--Main Content-->
+            <DataGrid ItemsSource="{Binding Bookings}" Grid.Row="2" Margin="20 0 20 20" AutoGenerateColumns="False" SelectionUnit="FullRow">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã đơn" Binding="{Binding ID}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Ngày đặt phòng" Binding="{Binding BookingDate}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Ngày nhận phòng" Binding="{Binding CheckInDate}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Ngày trả phòng" Binding="{Binding CheckOutDate}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" IsReadOnly="True" Width="*"/>
+                    <DataGridTemplateColumn Header="Mở rộng" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Xem" Click="BookingDetail_Clicked"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
         </Grid>
-        
-        <!--Main Content-->
-        <DataGrid ItemsSource="{Binding Bookings}" Grid.Row="2" Margin="20 0 20 20" AutoGenerateColumns="False" SelectionUnit="FullRow">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Mã đơn" Binding="{Binding ID}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Ngày đặt phòng" Binding="{Binding BookingDate}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Ngày nhận phòng" Binding="{Binding CheckInDate}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Ngày trả phòng" Binding="{Binding CheckOutDate}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Trạng thái" Binding="{Binding Status}" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Content="Xem" Click="ShowBookingDetail_Clicked"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+
+        <!--Booking Form-->
+        <Grid x:Name="bookingForm" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!--Header Form-->
+            <Grid Grid.Row="0" Margin="30 15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Style="{StaticResource headerBackBtn}" Click="HeaderBackBtn_Clicked">
+                    <Icon:PackIconMaterial Kind="ArrowLeft" Style="{StaticResource headerBackBtnIcon}"/>
+                </Button>
+
+                <TextBlock Grid.Column="1" HorizontalAlignment="Center" x:Name="titleForm" FontSize="32" FontWeight="Bold" Margin="0,0,30,0"/>
+            </Grid>
+
+            <!--Customer Section-->
+            <Grid Grid.Row="1" Margin="30 0 30 15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!--Title Section-->
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="4" Text="Thông tin khách hàng" Style="{StaticResource titleSection}"/>
+
+                <!--Main Section-->
+                <Grid x:Name="customerDataSection" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Mã khách hàng:" Style="{StaticResource labelField}"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtCustomerID" Style="{StaticResource baseTextBox}"/>
+
+                    <Label Grid.Row="0" Grid.Column="2" Content="Họ tên:" Style="{StaticResource labelFieldRight}"/>
+                    <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtCustomerName" Style="{StaticResource baseTextBox}"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Số điện thoại:" Style="{StaticResource labelField}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtCustomerPhone" Style="{StaticResource baseTextBox}"/>
+
+                    <Label Grid.Row="1" Grid.Column="2" Content="Email:" Style="{StaticResource labelFieldRight}"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" x:Name="txtCustomerEmail" Style="{StaticResource baseTextBox}"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Địa chỉ:" Style="{StaticResource labelField}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtCustomerAddress" Style="{StaticResource baseTextBox}"/>
+                </Grid>
+            </Grid>
+
+            <!--Booking Detail Section-->
+            <Grid Grid.Row="2" Margin="30 0 30 15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!--Title Section-->
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="4" Text="Thông tin đặt phòng" Style="{StaticResource titleSection}"/>
+
+                <!--Main Section-->
+                <Grid x:Name="bookingDataSection" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="165"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="165"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="165"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Mã đơn:" Style="{StaticResource labelField}"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtBookingID" Style="{StaticResource baseTextBox}"/>
+                    <Label Grid.Row="0" Grid.Column="2" Content="Trạng thái đơn:" Style="{StaticResource labelFieldRight}"/>
+                    <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtBookingStatus" Style="{StaticResource baseTextBox}"/>
+                    <Label Grid.Row="0" Grid.Column="4" Content="Ngày đặt phòng:" Style="{StaticResource labelFieldRight}"/>
+                    <TextBox Grid.Row="0" Grid.Column="5" x:Name="txtBookingDate" Style="{StaticResource baseTextBox}"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Ngày nhận phòng:" Style="{StaticResource labelField}"/>
+                    <DatePicker Grid.Row="1" Grid.Column="1" x:Name="txtCheckInDate" Style="{StaticResource baseDatePicker}"/>
+                    <Label Grid.Row="1" Grid.Column="2" Content="Số ngày lưu trú:" Style="{StaticResource labelFieldRight}"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" x:Name="txtStayDuration" Style="{StaticResource baseTextBox}" LostFocus="txtStayDuration_LostFocus"/>
+                    <Label Grid.Row="1" Grid.Column="4" Content="Ngày trả phòng:" Style="{StaticResource labelFieldRight}"/>
+                    <TextBox Grid.Row="1" Grid.Column="5" x:Name="txtCheckOutDate" Style="{StaticResource baseTextBox}"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Khách nhận phòng:" Style="{StaticResource labelField}"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtActCheckInTime" Style="{StaticResource baseTextBox}"/>
+                    <Label Grid.Row="2" Grid.Column="2" Content="Khách trả phòng:" Style="{StaticResource labelFieldRight}"/>
+                    <TextBox Grid.Row="2" Grid.Column="3" x:Name="txtActCheckOutTime" Style="{StaticResource baseTextBox}"/>
+
+                    <Label Grid.Row="3" Grid.Column="0" Content="Yêu cầu đặc biệt:" Style="{StaticResource labelField}"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" x:Name="txtSpecialRequest" Style="{StaticResource baseTextBox}"/>
+
+                    <Label Grid.Row="4" Grid.Column="0" Content="Phòng đã đặt:" Style="{StaticResource labelField}"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource baseTextBox}"/>
+
+                </Grid>
+            </Grid>
+
+            <!--Buttons Form-->
+            <WrapPanel Grid.Row="3" Margin="30 0 30 15" HorizontalAlignment="Right">
+                <Button x:Name="saveBtn" Content="Lưu" Style="{StaticResource formBtn}"/>
+                <Button x:Name="confirmBtn" Content="Hoàn tất" Style="{StaticResource formBtn}" Click="ConfirmBtn_Clicked"/>
+                <Button x:Name="cancelBtn" Content="Huỷ" Style="{StaticResource formBtn}" Click="CancelBtn_Clicked"/>
+                <Button x:Name="cancelBookingBtn" Content="Huỷ đặt phòng" Style="{StaticResource formBtn}"/>
+                <Button x:Name="checkInBtn" Content="Nhận phòng" Style="{StaticResource formBtn}"/>
+                <Button x:Name="checkOutBtn" Content="Trả phòng" Style="{StaticResource formBtn}"/>
+            </WrapPanel>
+
+        </Grid>
+
     </Grid>
 </UserControl>
