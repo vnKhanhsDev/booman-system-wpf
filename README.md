@@ -40,7 +40,7 @@
 * Bước 3: Chạy chương trình, có thể sử dụng tài khoản taikhoantest@gmail.com và mật khẩu là 123456 để đăng nhập
 ## Authors
 
-- [@vnKhanhsDev](https://github.com/vnKhanhsDev) - Vũ Nam Khánh - 21012879
+- Vũ Nam Khánh - 21012879
 - Đinh Đức Khánh - 21012504
 - Nguyễn Danh Điệp - 21012491
 - Nguyễn Minh Tuấn - 21012903
