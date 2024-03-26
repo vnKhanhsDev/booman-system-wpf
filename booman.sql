@@ -1,103 +1,236 @@
-CREATE DATABASE booman;
+CREATE DATABASE `booman`;
 
-USE booman;
+USE `booman`;
 
-CREATE TABLE account(
-	phone VARCHAR(255) NOT NULL PRIMARY KEY,
-  	email VARCHAR(255) NULL,
-  	password VARCHAR(255) NULL,
-  	full_name VARCHAR(255) NULL,
-  	role VARCHAR(255) NULL
+CREATE TABLE `account`(
+	`phone` VARCHAR(255) NOT NULL PRIMARY KEY,
+    `email` VARCHAR(255) NULL,
+    `password` VARCHAR(255) NULL,
+    `full_name` VARCHAR(255) NULL,
+    `role` VARCHAR(255) NULL
 );
-INSERT INTO account (phone, email, password, full_name, role) VALUES
-('0987654321', 'john.doe@example.com', 'pass123', 'John Doe', 'admin'),
-('0123456789', 'jane.doe@example.com', 'pass456', 'Jane Doe', 'manager'),
-('0998877665', 'alice.smith@example.com', 'pass789', 'Alice Smith', 'accountant'),
-('0888777666', 'bob.johnson@example.com', 'passabc', 'Bob Johnson', 'receptionist'),
-('0777666555', 'emma.davis@example.com', 'passdef', 'Emma Davis', 'receptionist');
+INSERT INTO `account` (`phone`, `email`, `password`, `full_name`, `role`) VALUES
+('0987654321', 'vnkhanh@gmail.com', '21012879', 'Vũ Nam Khánh', 'admin'),
+('0123456789', 'ddkhanh@gmail.com', '21012504', 'Đinh Đức Khánh', 'admin'),
+('0998877665', 'nddiep@gmail.com', '21012491', 'Nguyễn Danh Điệp', 'admin'),
+('0888777666', 'nmtuan@gmail.com', '21012903', 'Nguyễn Minh Tuấn', 'admin'),
+('0777666555', 'pmhieu@gmail.com', '21012495', 'Nguyễn Minh Hiếu', 'admin'),
+('0666555444', 'quanly@gmail.com', 'pass123', 'Michael Wilson', 'manager'),
+('0555444333', 'letan@gmail.com', 'pass456', 'Sophia Brown', 'receptionist'),
+('0555333111', 'taikhoanmoi@gmail.com', 'booman', 'Roger James', 'receptionist'),
+('0444333222', 'william.jones@example.com', 'passmno', 'William Jones', 'receptionist'),
+('0333222111', 'taikhoantest@gmail.com', '123456', 'Olivia Taylor', 'admin'),
+('0222111000', 'david.miller@example.com', 'passtuv', 'David Miller', 'receptionist');
 
-CREATE TABLE room(
-	room_num VARCHAR(255) NOT NULL PRIMARY KEY,
-  	room_type VARCHAR(255) NULL,
-  	price DECIMAL NULL,
-  	status VARCHAR(255) NULL
+CREATE TABLE `room`(
+	`room_num` VARCHAR(255) NOT NULL PRIMARY KEY,
+    `quality_class` VARCHAR(255) NULL,
+    `bed_type_class` VARCHAR(255) NULL,
+    `price` DECIMAL NULL,
+    `status` VARCHAR(255) NULL
 );
-INSERT INTO room(room_num, room_type, price, status) VALUES
-('P001', 'standard', 800000, 'empty'),
-('P002', 'standard', 800000, 'empty'),
-('P003', 'standard', 800000, 'empty'),
-('P004', 'standard', 800000, 'empty'),
-('P005', 'standard', 800000, 'empty');
+INSERT INTO `room` (`room_num`, `quality_class`, `bed_type_class`, `price`, `status`) VALUES
+('P0101', 'Standard', 'SGL', 500000, 'using'),
+('P0102', 'Standard', 'TWN', 800000, 'using'),
+('P0103', 'Standard', 'TWN', 800000, 'booked'),
+('P0104', 'Standard', 'DBL', 900000, 'booked'),
+('P0105', 'Standard', 'DBL', 900000, 'booked'),
+('P0201', 'Standard', 'SGL', 500000, 'booked'),
+('P0202', 'Standard', 'TWN', 800000, 'booked'),
+('P0203', 'Standard', 'TWN', 800000, 'booked'),
+('P0204', 'Standard', 'DBL', 900000, 'booked'),
+('P0205', 'Standard', 'DBL', 900000, 'booked'),
+('P0301', 'Standard', 'SGL', 500000, 'booked'),
+('P0302', 'Standard', 'TWN', 800000, 'booked'),
+('P0303', 'Standard', 'TWN', 800000, 'booked'),
+('P0304', 'Standard', 'DBL', 900000, 'booked'),
+('P0305', 'Standard', 'DBL', 900000, 'empty'),
+('P0401', 'Standard', 'SGL', 500000, 'empty'),
+('P0402', 'Standard', 'TWN', 800000, 'empty'),
+('P0403', 'Standard', 'TWN', 800000, 'booked'),
+('P0404', 'Standard', 'DBL', 900000, 'empty'),
+('P0405', 'Standard', 'DBL', 900000, 'empty'),
+('P0501', 'Standard', 'SGL', 500000, 'booked'),
+('P0502', 'Standard', 'TWN', 800000, 'booked'),
+('P0503', 'Standard', 'TWN', 800000, 'booked'),
+('P0504', 'Standard', 'DBL', 900000, 'booked'),
+('P0505', 'Standard', 'DBL', 900000, 'booked'),
+('P0601', 'Standard', 'SGL', 500000, 'empty'),
+('P0602', 'Standard', 'TWN', 800000, 'empty'),
+('P0603', 'Standard', 'TWN', 800000, 'empty'),
+('P0604', 'Standard', 'DBL', 900000, 'empty'),
+('P0605', 'Standard', 'DBL', 900000, 'empty'),
+('P0701', 'Standard', 'SGL', 500000, 'empty'),
+('P0702', 'Standard', 'TWN', 800000, 'empty'),
+('P0703', 'Standard', 'TWN', 800000, 'empty'),
+('P0704', 'Standard', 'DBL', 900000, 'empty'),
+('P0705', 'Standard', 'DBL', 900000, 'empty'),
+('P0801', 'Standard', 'SGL', 500000, 'empty'),
+('P0802', 'Standard', 'TWN', 800000, 'empty'),
+('P0803', 'Standard', 'TWN', 800000, 'empty'),
+('P0804', 'Standard', 'DBL', 900000, 'empty'),
+('P0805', 'Standard', 'DBL', 900000, 'empty');
 
-CREATE TABLE service(
-	id VARCHAR(255) NOT NULL PRIMARY KEY,
-  	service_name VARCHAR(255) NULL,
-  	description VARCHAR(255) NULL,
-  	price DECIMAL NULL
+CREATE TABLE `service`(
+	`id` VARCHAR(255) NOT NULL PRIMARY KEY,
+    `name` VARCHAR(255) NULL,
+    `price` DECIMAL NULL,
+    `unit` VARCHAR(255) NULL,
+    `note` VARCHAR(255) NULL
 );
-INSERT INTO service(id, service_name, description, price) VALUES
-('DV001', 'dich vu 1', 'test dich vu 1', 30000),
-('DV002', 'dich vu 2', 'test dich vu 2', 40000),
-('DV003', 'dich vu 3', 'test dich vu 3', 50000),
-('DV004', 'dich vu 4', 'test dich vu 4', 60000),
-('DV005', 'dich vu 5', 'test dich vu 5', 90000);
+INSERT INTO `service` (`id`, `name`, `price`, `unit`, `note`) VALUES
+('DV001', 'Massage', 200000, 'người', NULL),
+('DV002', 'Spa', 300000, 'lượt', NULL),
+('DV003', 'Phòng tập Gym', 150000, 'ngày', NULL),
+('DV004', 'Bữa sáng', 50000, 'bữa', NULL),
+('DV005', 'Bữa trưa', 100000, 'bữa', NULL),
+('DV006', 'Bữa tối', 120000, 'bữa', NULL),
+('DV007', 'Giặt ủi', 50000, 'kilogam', NULL),
+('DV008', 'Dọn phòng', 100000, 'lần', NULL),
+('DV009', 'Dịch vụ di chuyển', 200000, 'ngày', NULL),
+('DV010', 'Hướng dẫn viên du lịch', 500000, 'ngày', NULL),
+('DV011', 'Đón sân bay', 300000, 'lượt', NULL),
+('DV012', 'Dịch vụ Taxi', 100000, 'lượt', NULL),
+('DV013', 'Thuê xe ô tô', 400000, 'ngày', NULL),
+('DV014', 'Thuê xe đạp', 50000, 'ngày', NULL),
+('DV015', 'Ghế massage tự động', 50000, 'giờ', NULL),
+('DV016', 'Phòng xông hơi', 200000, 'lượt', NULL),
+('DV017', 'Bể bơi', 100000, 'người', NULL),
+('DV018', 'Lớp tập thể dục', 150000, 'buổi', NULL),
+('DV019', 'Phòng hội nghị', 1000000, 'giờ', NULL),
+('DV020', 'Phòng họp', 500000, 'giờ', NULL),
+('DV021', 'WiFi', 50000, 'ngày', NULL),
+('DV022', 'Bãi đỗ xe', 50000, 'ngày', NULL),
+('DV023', 'Nâng cấp phòng', 500000, 'lần', NULL),
+('DV024', 'Trả phòng trễ', 300000, 'lần', NULL),
+('DV025', 'Nhận phòng sớm', 200000, 'lần', NULL),
+('DV026', 'Cho thuê cũi em bé', 100000, 'ngày', NULL),
+('DV027', 'Giường phụ', 200000, 'người', NULL),
+('DV028', 'Tủ lạnh mini', 100000, 'lần', NULL),
+('DV029', 'Quầy snack', 50000, 'lần', NULL),
+('DV030', 'Trang trí phòng', 200000, 'lần', NULL);
 
-CREATE TABLE room_services(
-	room_id	VARCHAR(255) NOT NULL,
-  	service_id VARCHAR(255) NOT NULL,
-  	quantity INT NULL,
-  	FOREIGN KEY (room_id) REFERENCES room(room_num),
-  	FOREIGN KEY (service_id) REFERENCES service(id)
+CREATE TABLE `room_services`(
+	`room_id` VARCHAR(255) NOT NULL,
+  	`service_id` VARCHAR(255) NOT NULL,
+  	`quantity` INT NULL,
+  	FOREIGN KEY (`room_id`) REFERENCES `room`(`room_num`),
+  	FOREIGN KEY (`service_id`) REFERENCES `service`(`id`)
 );
-INSERT INTO room_services(room_id, service_id, quantity) VALUES
-('P003', 'DV001', 2),
-('P003', 'DV003', 2),
-('P003', 'DV004', 1),
-('P005', 'DV002', 3),
-('P005', 'DV003', 3);
+INSERT INTO `room_services` (`room_id`, `service_id`, `quantity`) VALUES
+('P0101', 'DV001', 2),
+('P0101', 'DV003', 2),
+('P0102', 'DV004', 1),
+('P0103', 'DV002', 3),
+('P0105', 'DV003', 3);
 
-CREATE TABLE customer(
-	id VARCHAR(255) NOT NULL PRIMARY KEY,
-  	customer_name VARCHAR(255) NULL,
-  	phone VARCHAR(255) NULL,
-  	email VARCHAR(255) NULL,
-  	address VARCHAR(255) NULL
+CREATE TABLE `customer`(
+	`id` VARCHAR(255) NOT NULL PRIMARY KEY,
+  	`name` VARCHAR(255) NULL,
+  	`phone` VARCHAR(255) NULL,
+  	`email` VARCHAR(255) NULL,
+  	`address` VARCHAR(255) NULL
 );
-INSERT INTO customer(id, customer_name, phone, email, address) VALUES
-('KH000001', 'John Doe', '0987654321', 'john.doe@example.com', '123 Main Street'),
-('KH000002', 'Jane Doe', '0123456789', 'jane.doe@example.com', '456 Elm Street'),
-('KH000003', 'Alice Smith', '0998877665', 'alice.smith@example.com', '789 Oak Street'),
-('KH000004', 'Bob Johnson', '0888777666', 'bob.johnson@example.com', '1011 Pine Street'),
-('KH000005', 'Emma Davis', '0777666555', 'emma.davis@example.com', '1213 Maple Street');
+INSERT INTO `customer` (`id`, `name`, `phone`, `email`, `address`) VALUES
+('KH000001', 'Nguyễn Văn Kiên', '0987654321', 'nguyenvankien@example.com', '123 Đường ABC, Quận 1, Thành phố Hồ Chí Minh'),
+('KH000002', 'Trần Thị Hoa', '0123456789', 'tranthihoa@example.com', '456 Đường XYZ, Quận 2, Thành phố Hồ Chí Minh'),
+('KH000003', 'Lê Văn Tú', '0909123456', 'levantu@example.com', '789 Đường LMN, Quận 3, Thành phố Hồ Chí Minh'),
+('KH000004', 'Phạm Thị Lan', '0998765432', 'phamthilan@example.com', '987 Đường UVW, Quận 4, Thành phố Hồ Chí Minh'),
+('KH000005', 'Hoàng Văn Đức', '0888888888', 'hoangvanduc@example.com', '246 Đường DEF, Quận 5, Thành phố Hồ Chí Minh'),
+('KH000006', 'Mai Thị Hương', '0899999999', 'maithihuong@example.com', '135 Đường GHI, Quận 6, Thành phố Hồ Chí Minh'),
+('KH000007', 'Đặng Văn Tuấn', '0912345678', 'dangvantuan@example.com', '579 Đường JKL, Quận 7, Thành phố Hồ Chí Minh'),
+('KH000008', 'Nguyễn Thị Thanh', '0976543210', 'nguyenthithanh@example.com', '246 Đường MNO, Quận 8, Thành phố Hồ Chí Minh'),
+('KH000009', 'Trần Văn Đăng', '0965432109', 'tranvandang@example.com', '789 Đường PQR, Quận 9, Thành phố Hồ Chí Minh'),
+('KH000010', 'Lê Thị Hạnh', '0901112223', 'lethihanh@example.com', '357 Đường STU, Quận 10, Thành phố Hồ Chí Minh'),
+('KH000011', 'Phạm Văn Tuấn', '0955667788', 'phamvantuan@example.com', '468 Đường VWX, Quận 11, Thành phố Hồ Chí Minh'),
+('KH000012', 'Hoàng Thị Nhung', '0912334455', 'hoangthinung@example.com', '579 Đường YZQ, Quận 12, Thành phố Hồ Chí Minh'),
+('KH000013', 'Mai Văn Bắc', '0998877665', 'maivanbac@example.com', '135 Đường ABC, Quận Gò Vấp, Thành phố Hồ Chí Minh'),
+('KH000014', 'Đặng Thị Mai', '0987876765', 'dangthimai@example.com', '246 Đường XYZ, Quận Tân Bình, Thành phố Hồ Chí Minh'),
+('KH000015', 'Nguyễn Văn Tài', '0909090909', 'nguyenvantai@example.com', '579 Đường LMN, Quận Tân Phú, Thành phố Hồ Chí Minh'),
+('KH000016', 'Trần Thị Lệ', '0123546879', 'tranthile@example.com', '789 Đường PQR, Quận Bình Thạnh, Thành phố Hồ Chí Minh'),
+('KH000017', 'Lê Văn Toàn', '0909090909', 'levantoan@example.com', '357 Đường STU, Quận Thủ Đức, Thành phố Hồ Chí Minh'),
+('KH000018', 'Phạm Thị Hương', '0888787878', 'phamthihuong@example.com', '468 Đường VWX, Quận 9, Thành phố Hồ Chí Minh'),
+('KH000019', 'Hoàng Văn Đạt', '0976767676', 'hoangvandat@example.com', '579 Đường YZQ, Quận 8, Thành phố Hồ Chí Minh'),
+('KH000020', 'Mai Thị Thu', '0912345678', 'maithithu@example.com', '135 Đường ABC, Quận 7, Thành phố Hồ Chí Minh'),
+('KH000021', 'Đặng Văn Tuấn', '0901234567', 'dangvantuan1@example.com', '246 Đường XYZ, Quận 1, Thành phố Hồ Chí Minh'),
+('KH000022', 'Nguyễn Thị Trang', '0909999888', 'nguyenthitrang@example.com', '111 Đường KLM, Quận 2, Thành phố Hồ Chí Minh'),
+('KH000023', 'Trần Văn Hòa', '0988888666', 'tranvanhoa@example.com', '222 Đường NOP, Quận 3, Thành phố Hồ Chí Minh'),
+('KH000024', 'Lê Thị Thu', '0911222333', 'lethithu@example.com', '333 Đường QRS, Quận 4, Thành phố Hồ Chí Minh'),
+('KH000025', 'Phạm Văn Thành', '0933333222', 'phamvanthanh@example.com', '444 Đường TUV, Quận 5, Thành phố Hồ Chí Minh'),
+('KH000026', 'Hoàng Thị Hạnh', '0944444333', 'hoangthihanh@example.com', '555 Đường WXY, Quận 6, Thành phố Hồ Chí Minh'),
+('KH000027', 'Mai Văn Hùng', '0955555444', 'maivanhung@example.com', '666 Đường YZA, Quận 7, Thành phố Hồ Chí Minh'),
+('KH000028', 'Đặng Thị Thơ', '0966666555', 'dangthitho@example.com', '777 Đường BCD, Quận 8, Thành phố Hồ Chí Minh'),
+('KH000029', 'Nguyễn Văn Nam', '0977777666', 'nguyenvannam@example.com', '888 Đường CDE, Quận 9, Thành phố Hồ Chí Minh'),
+('KH000030', 'Trần Thị Ngọc', '0988888777', 'tranthingoc@example.com', '999 Đường DEF, Quận 10, Thành phố Hồ Chí Minh');
 
-CREATE TABLE booking(
-	id VARCHAR(255) NOT NULL PRIMARY KEY,
-  	customer_id VARCHAR(255) NOT NULL,
-  	booking_date DATETIME NULL,
-  	checkin_date DATETIME NULL,
-  	stay_duration INT NULL,
-  	checkout_date DATETIME NULL,
-  	act_checkin_time DATETIME NULL,
-  	act_checkout_time DATETIME NULL,
-  	special_request VARCHAR(255) NULL,
-  	status VARCHAR(255) NULL
+CREATE TABLE `booking`(
+	`id` VARCHAR(255) NOT NULL PRIMARY KEY,
+  	`customer_id` VARCHAR(255) NOT NULL,
+  	`booking_date` DATETIME NULL,
+  	`checkin_date` DATETIME NULL,
+  	`stay_duration` INT NULL,
+  	`checkout_date` DATETIME NULL,
+  	`act_checkin_time` DATETIME NULL,
+  	`act_checkout_time` DATETIME NULL,
+  	`special_request` VARCHAR(255) NULL,
+  	`status` VARCHAR(255) NULL
 );
-INSERT INTO booking(id, customer_id, booking_date, checkin_date, stay_duration, checkout_date, act_checkin_time, act_checkout_time, special_request, status) VALUES
-('BKI000001', 'KH000001', '2024-03-10 10:24:37', '2024-03-20', 3, '2024-03-23', NULL, NULL, 'test', 'depositing'),
-('BKI000002', 'KH000001', '2024-03-10 11:15:48', '2024-03-22', 5, '2024-03-27', NULL, NULL, 'test', 'depositing'),
-('BKI000003', 'KH000001', '2024-03-10 12:36:19', '2024-03-23', 4, '2024-03-27', NULL, NULL, 'test', 'checkin'),
-('BKI000004', 'KH000001', '2024-03-10 13:51:22', '2024-03-24', 3, '2024-03-27', NULL, NULL, 'test', 'depositing'),
-('BKI000005', 'KH000001', '2024-03-10 14:29:44', '2024-03-25', 4, '2024-03-29', NULL, NULL, 'test', 'checkin');
+INSERT INTO `booking` (`id`, `customer_id`, `booking_date`, `checkin_date`, `stay_duration`, `checkout_date`, `act_checkin_time`, `act_checkout_time`, `special_request`, `status`) VALUES
+('BK000001', 'KH000001', '2024-03-03 08:15:30', '2024-03-18', 6, '2024-03-24', '2024-03-18 13:05:15', NULL, NULL, 'checkout'),
+('BK000002', 'KH000002', '2024-03-03 09:25:45', '2024-03-29', 3, '2024-04-01', NULL, NULL, NULL, 'depositing'),
+('BK000003', 'KH000003', '2024-03-03 10:35:50', '2024-03-27', 4, '2024-03-31', NULL, NULL, NULL, 'depositing'),
+('BK000004', 'KH000004', '2024-03-03 11:45:55', '2024-03-22', 7, '2024-03-29', NULL, NULL, NULL, 'checkin'),
+('BK000005', 'KH000005', '2024-03-03 12:55:00', '2024-03-23', 2, '2024-03-25', NULL, NULL, NULL, 'checkin'),
+('BK000006', 'KH000006', '2024-03-05 09:30:15', '2024-03-21', 5, '2024-03-26', NULL, NULL, NULL, 'checkin'),
+('BK000007', 'KH000007', '2024-03-05 10:45:20', '2024-03-31', 1, '2024-04-01', NULL, NULL, NULL, 'depositing'),
+('BK000008', 'KH000008', '2024-03-05 11:55:30', '2024-03-26', 7, '2024-04-02', NULL, NULL, NULL, 'depositing'),
+('BK000009', 'KH000009', '2024-03-09 07:23:45', '2024-03-28', 3, '2024-03-31', NULL, NULL, NULL, 'depositing'),
+('BK000010', 'KH000010', '2024-03-09 08:45:30', '2024-03-20', 2, '2024-03-22', NULL, NULL, NULL, 'checkin'),
+('BK000011', 'KH000011', '2024-03-09 09:15:55', '2024-03-25', 6, '2024-03-31', NULL, NULL, NULL, 'depositing'),
+('BK000012', 'KH000012', '2024-03-09 10:30:20', '2024-03-24', 1, '2024-03-25', NULL, NULL, NULL, 'depositing'),
+('BK000013', 'KH000013', '2024-03-09 11:00:10', '2024-03-21', 5, '2024-03-26', NULL, NULL, NULL, 'checkin'),
+('BK000014', 'KH000014', '2024-03-09 12:45:35', '2024-03-27', 3, '2024-03-30', NULL, NULL, NULL, 'depositing'),
+('BK000015', 'KH000015', '2024-03-09 14:20:40', '2024-03-30', 7, '2024-04-06', NULL, NULL, NULL, 'depositing'),
+('BK000016', 'KH000016', '2024-03-10 15:15:23', '2024-03-22', 2, '2024-03-24', NULL, NULL, NULL, 'checkin'),
+('BK000017', 'KH000017', '2024-03-12 12:13:05', '2024-03-20', 4, '2024-03-24', NULL, NULL, NULL, 'canceled'),
+('BK000018', 'KH000018', '2024-03-13 09:30:00', '2024-03-23', 6, '2024-03-29', NULL, NULL, NULL, 'checkin'),
+('BK000019', 'KH000019', '2024-03-13 11:45:00', '2024-03-26', 1, '2024-03-27', NULL, NULL, NULL, 'depositing'),
+('BK000020', 'KH000020', '2024-03-14 10:45:20', '2024-03-21', 3, '2024-03-24', NULL, NULL, NULL, 'checkin'),
+('BK000021', 'KH000021', '2024-03-15 08:35:23', '2024-03-25', 5, '2024-03-30', NULL, NULL, NULL, 'depositing'),
+('BK000022', 'KH000022', '2024-03-16 07:30:08', '2024-03-29', 7, '2024-04-05', NULL, NULL, NULL, 'depositing'),
+('BK000023', 'KH000023', '2024-03-16 12:18:15', '2024-03-27', 1, '2024-03-28', NULL, NULL, NULL, 'depositing'),
+('BK000024', 'KH000024', '2024-03-16 16:00:09', '2024-03-30', 6, '2024-04-05', NULL, NULL, NULL, 'depositing'),
+('BK000025', 'KH000025', '2024-03-18 17:12:05', '2024-03-22', 3, '2024-03-25', NULL, NULL, NULL, 'checkin'),
+('BK000026', 'KH000026', '2024-03-19 10:30:03', '2024-03-29', 5, '2024-04-03', NULL, NULL, NULL, 'depositing'),
+('BK000027', 'KH000027', '2024-03-19 11:45:12', '2024-03-20', 7, '2024-03-27', '2024-03-20 13:02:48', NULL, NULL, 'checkout'),
+('BK000028', 'KH000028', '2024-03-19 12:15:22', '2024-03-28', 2, '2024-03-30', NULL, NULL, NULL, 'depositing'),
+('BK000029', 'KH000029', '2024-03-20 09:30:15', '2024-03-31', 4, '2024-04-04', NULL, NULL, NULL, 'depositing'),
+('BK000030', 'KH000030', '2024-03-20 11:15:55', '2024-03-23', 5, '2024-03-28', NULL, NULL, NULL, 'checkin');
 
-CREATE TABLE booked_rooms(
-	booking_id VARCHAR(255) NOT NULL,
-  	room_num VARCHAR(255) NOT NULL,
-  	FOREIGN KEY (booking_id) REFERENCES booking(id),
-  	FOREIGN KEY (room_num) REFERENCES room(room_num)
+CREATE TABLE `booked_rooms`(
+	`booking_id` VARCHAR(255) NOT NULL,
+  	`room_num` VARCHAR(255) NOT NULL,
+  	FOREIGN KEY (`booking_id`) REFERENCES `booking`(`id`),
+  	FOREIGN KEY (`room_num`) REFERENCES `room`(`room_num`)
 );
-INSERT INTO booked_rooms(booking_id, room_num) VALUES
-('BKI000001', 'P001'),
-('BKI000002', 'P005'),
-('BKI000003', 'P002'),
-('BKI000004', 'P004'),
-('BKI000005', 'P003');
+INSERT INTO `booked_rooms` (`booking_id`, `room_num`) VALUES
+('BK000001', 'P0101'),
+('BK000001', 'P0102'),
+('BK000027', 'P0303'),
+('BK000004', 'P0103'),
+('BK000004', 'P0104'),
+('BK000004', 'P0105'),
+('BK000005', 'P0201'),
+('BK000006', 'P0202'),
+('BK000010', 'P0203'),
+('BK000010', 'P0204'),
+('BK000013', 'P0205'),
+('BK000016', 'P0301'),
+('BK000020', 'P0302'),
+('BK000020', 'P0304'),
+('BK000025', 'P0403'),
+('BK000030', 'P0501'),
+('BK000030', 'P0502'),
+('BK000030', 'P0503'),
+('BK000030', 'P0504'),
+('BK000030', 'P0505');

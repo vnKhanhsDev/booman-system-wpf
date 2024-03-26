@@ -233,7 +233,6 @@
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\RoomService.cs" />
     <Compile Include="Services\MySQLDatabaseService.cs" />
-    <Compile Include="Services\SQLiteDatabaseService.cs" />
     <Compile Include="ViewModels\AccountManagementViewModel.cs" />
     <Compile Include="ViewModels\BookingManagementViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
