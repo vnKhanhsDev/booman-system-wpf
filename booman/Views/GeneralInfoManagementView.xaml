@@ -6,7 +6,20 @@
              xmlns:local="clr-namespace:booman.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="White">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Margin="50,12,50,0">
+                <Label Content="BOOMAN" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <Label Content="1. QUY ĐỊNH CHUNG" FontSize="18" FontWeight="Bold"/>
+                <TextBlock Text="Chứng minh nhân dân/ hộ chiếu do cơ quan có thẩm quyền phát hành phải được xuất trình khi làm thủ tục nhận phòng. Vui lòng cung cấp Thẻ tín dụng hoặc tiền đặt cọc trước khi làm thủ tục nhận phòng để đảm bảo các chi phí phát sinh." TextWrapping="Wrap" Margin="20,0,0,0"/>
+                <TextBlock Text="Không được hút thuốc trong phòng đối với các tầng không hút thuốc, hành lang, thang máy, và sảnh khách sạn. Nếu xảy ra trường hợp vi phạm về hút thuốc, khách sẽ phải trả khoản phí vệ sinh 600.000 VND không hoàn lại." TextWrapping="Wrap" Margin="20,0,0,0"/>
+                <Label Content="2. KHÁCH ĐẾN THĂM" FontSize="18" FontWeight="Bold"/>
+                <TextBlock Text="Theo quy định của Chính phủ Việt Nam, nam giới nước ngoài và nữ giới Việt Nam không được phép lưu trú trong cùng phòng trừ khi xuất trình giấy chứng nhận kết hôn." TextWrapping="Wrap" Margin="20,0,0,0"/>
+                <TextBlock Text="Khách sẽ phải hoàn toàn chịu trách nhiệm về hoạt động và hành vi của khách đến thăm và chịu trách nhiệm về bất kỳ thiệt hại hoặc chi phí nào của khách đi kèm." TextWrapping="Wrap" Margin="20,0,0,0"/>
+                <Label Content="3. MẤT MÁT VÀ HƯ HỎNG" FontSize="18" FontWeight="Bold"/>
+                <TextBlock Text="Khách lưu trú phải kiểm tra của phòng đã được khóa khi rời khỏi phòng. Trong trường hợp mất chìa khoá phòng, khách sẽ phải chịu khoản phí 25 Đô la Mỹ." TextWrapping="Wrap" Margin="17,0,0,0"/>
+                <TextBlock Text="Khách lưu trú phải chịu trách nhiệm tài chính đối với việc làm mất hoặc hư hỏng các thiết bị và các dụng cụ kỹ thuật của khách sạn do lỗi của khách hoặc khách viếng thăm." TextWrapping="Wrap" Margin="17,0,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

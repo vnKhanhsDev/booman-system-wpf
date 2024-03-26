@@ -67,6 +67,10 @@ namespace booman.Views
             if (result == MessageBoxResult.OK)
             {
                 LoadRoom();
+                createRoomNumber.Text = "";
+                createRoomType.Text = "";
+                createBedType.Text = "";
+                createPrice.Text = "";
                 AddRoomGrid.Visibility = Visibility.Collapsed;
             }
         }
@@ -98,7 +102,9 @@ namespace booman.Views
                 labelUpdateRoom.Content = "Chỉnh sửa thông tin phòng";
                 buttonCancel.Visibility = Visibility.Visible;
                 buttonDelete.Visibility = Visibility.Collapsed;
+
                 textRoomType.IsReadOnly = false;
+                textBedType.IsReadOnly = false;
                 textPrice.IsReadOnly = false;
                 textStatus.IsReadOnly = false;
                 buttonUpdate.Content = "Xác nhận";
@@ -115,6 +121,9 @@ namespace booman.Views
                     if (result_2 == MessageBoxResult.OK)
                     {
                         LoadRoom();
+                        buttonCancel.Visibility = Visibility.Collapsed;
+                        buttonDelete.Visibility = Visibility.Visible;
+                        buttonUpdate.Content = "Chỉnh sửa";
                         UpdateRoomGrid.Visibility = Visibility.Collapsed;
                     }
                 }
